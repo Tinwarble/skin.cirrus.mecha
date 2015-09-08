@@ -3,7 +3,7 @@
     <defaultcontrol always="true">55</defaultcontrol>
     <onload condition="System.HasAddon(script.tv.show.next.aired) + IsEmpty(Window(Home).Property(DontRunTVShowScripts))">RunScript(script.tv.show.next.aired,backend=True)</onload>
     <allowoverlay>no</allowoverlay>
-    <views>55,52,515,508,666,556,555,667,569,668,570,513,519,571,514,560,590,591,592,593,594,595,511,700,709,766,525,720,721</views>
+    <views>55,52,515,508,665,556,555,667,569,668,570,513,519,571,514,560,590,591,592,593,594,595,511,700,709,766,525,720,721</views>
     <!-- Hide menu if kiosk mode turned ON -->
     <visible>!Skin.HasSetting(kiosk)</visible>
     <controls>
@@ -126,6 +126,16 @@
                 <visible>!Skin.HasSetting(VideoLibraryMusicVideoFanart)</visible>
                 <visible>Container.Content(MusicVideos) | Container.Content(Artists) | Container.Content(Albums)</visible>
             </control>
+		<!-- Fanart Overlay - Dimming-->
+			<control type="image">				
+				<left>0</left>
+				<top>0</top>
+				<width>1280</width>
+				<height>720</height>
+				<aspectratio>stretch</aspectratio>
+				<texture>special://skin/media/background.png</texture>
+				<visible>Skin.HasSetting(VideoLibraryDimFanart) + !Control.IsVisible(55)</visible>
+			</control>
             <!-- GenreFanart Mod -->
             <!-- Changes Butchabay MOD 1.2.2 -->
             <control type="image">
@@ -152,7 +162,7 @@
         <include>Fanart_Games_Wide</include>
         <!-- view id = 592 -->
         <include>FanartSlide</include>
-        <!-- view id = 666 -->
+        <!-- view id = 665 -->
         <include>MusicVideoInfoListView</include>
         <!-- view id = 511 -->
         <include>RightListView</include>
@@ -355,7 +365,7 @@
             </control>
             <!-- eye image and view options label at top of menu -->
             <control type="group">   
-                <left>-240</left>
+                <left>-200</left>
                 <top>20</top>
                 <control type="label">
                     <description>View options</description>
@@ -385,7 +395,7 @@
                     <label>-</label>
                     <onleft>55</onleft>
                     <onright>55</onright>
-                    <onup>8</onup>
+                    <onup>2044</onup>
                     <ondown>3</ondown>
                 </control>
                 <control type="button" id="3">
@@ -416,9 +426,9 @@
                 <!-- GROUP OF RADIO BUTTONS  -->
                 <control type="grouplist" id="9010">
                     <left>0</left>
-                    <top>80</top>
+                    <top>70</top>
                     <width>250</width>
-                    <height>450</height>
+                    <height>550</height>
                     <onleft>55</onleft>
                     <onright>55</onright>
                     <onup>3</onup>
@@ -443,27 +453,27 @@
                         <include>ButtonCommonValues</include>
                         <label>20367</label>
                     </control>
-                    <control type="radiobutton" id="2062">
+                    <control type="radiobutton" id="2010">
                         <description>In progress icon behaviour</description>
                         <include>ButtonCommonValues</include>
                         <label>31042</label>
                         <onclick>Skin.ToggleSetting(DisableInProgress)</onclick>
                         <selected>Skin.HasSetting(DisableInProgress)</selected>
                     </control>
-                    <control type="radiobutton" id="19">
+                    <control type="radiobutton" id="2011">
                         <visible>Container.CanFilter + !Container.CanFilterAdvanced</visible>
                         <description>Filter</description>
                         <include>ButtonCommonValues</include>
                         <label>587</label>
                     </control>
-                    <control type="radiobutton" id="21">
+                    <control type="radiobutton" id="2012">
                         <visible>Container.CanFilterAdvanced</visible>
                         <description>Filter</description>
                         <include>ButtonCommonValues</include>
                         <label>587</label>
                         <onclick>Filter</onclick>
                     </control>
-                    <control type="radiobutton" id="11">
+                    <control type="radiobutton" id="2013">
                         <description>Unlock Shares</description>
                         <include>ButtonCommonValues</include>
                         <label>20336</label>
@@ -471,14 +481,14 @@
                         <selected>system.ismaster</selected>
                         <visible>system.haslocks</visible>
                     </control>
-                    <control type="button" id="2070">
+                    <control type="button" id="2014">
                         <description>Watch it Later</description>
                         <include>ButtonCommonValues</include>
                         <label>41300</label>
                         <onclick>RunPlugin(plugin://script.simpleplaylists/?mode=addCurrentUrl)</onclick>
                         <visible>Container.Content(Movies) | Container.Content(Episodes) + System.HasAddon(script.simpleplaylists)</visible>
                     </control>
-                    <control type="radiobutton" id="201">
+                    <control type="radiobutton" id="2015">
                         <description>Toggle MoviesFanart</description>
                         <include>ButtonCommonValues</include>
                         <label>31307</label>
@@ -486,7 +496,7 @@
                         <selected>Skin.HasSetting(VideoLibraryMovieFanart)</selected>
                         <visible>Container.Content(Movies)</visible>
                     </control>
-                    <control type="radiobutton" id="2060">
+                    <control type="radiobutton" id="2016">
                         <description>Toggle BlackFanart</description>
                         <include>ButtonCommonValues</include>
                         <label>41203</label>
@@ -495,22 +505,39 @@
                         <enable>Skin.HasSetting(VideoLibraryMovieFanart)</enable>
                         <visible>Container.Content(Movies) + Skin.HasSetting(VideoLibraryMovieFanart)</visible>
                     </control>
-                    <control type="radiobutton" id="2058">
+                    <control type="radiobutton" id="2017">
                         <description>Toggle Extrathumbs</description>
                         <include>ButtonCommonValues</include>
                         <label>41201</label>
                         <onclick>Skin.ToggleSetting(VideoLibraryMovieExtrathumbs)</onclick>
                         <selected>Skin.HasSetting(VideoLibraryMovieExtrathumbs)</selected>
-                        <visible>Container.Content(Movies) + !Control.IsVisible(668) + [!Container.Content(TVShows) + !Container.Content(Seasons) | Control.IsVisible(666) | Control.IsVisible(721) | Control.IsVisible(508)]</visible>
+                        <visible>Container.Content(Movies) + !Control.IsVisible(668) + [!Container.Content(TVShows) + !Container.Content(Seasons) | Control.IsVisible(665) | Control.IsVisible(721) | Control.IsVisible(508)]</visible>
+						<visible>!Control.IsVisible(515)</visible>
                     </control>
-                    <control type="radiobutton" id="2059">
+					<control type="radiobutton" id="2018">
+                        <description>Toggle Clearlogo and Studio</description>
+                        <include>ButtonCommonValues</include>
+                        <label>41274</label>
+                        <onclick>Skin.ToggleSetting(ClearlogoStudio)</onclick>
+                        <selected>Skin.HasSetting(ClearlogoStudio)</selected>
+                        <visible>Container.Content(Movies) + Control.IsVisible(515)</visible>						
+                    </control>
+					<control type="radiobutton" id="2019">
+                        <description>Toggle Compact Coverart Overlay</description>
+                        <include>ButtonCommonValues</include>
+                        <label>41275</label>
+                        <onclick>Skin.ToggleSetting(HideCoverArtOverlay)</onclick>
+                        <selected>Skin.HasSetting(HideCoverArtOverlay)</selected>
+                        <visible>[Container.Content(Movies) | Container.Content(TVShows) | Container.Content(Seasons)] + Control.IsVisible(515)</visible>						
+                    </control>
+                    <control type="radiobutton" id="2020">
                         <description>Toggle Dim Fanart</description>
                         <include>ButtonCommonValues</include>
                         <label>41202</label>
                         <onclick>Skin.ToggleSetting(VideoLibraryDimFanart)</onclick>
                         <selected>Skin.HasSetting(VideoLibraryDimFanart)</selected>
                     </control>
-                    <control type="radiobutton" id="202">
+                    <control type="radiobutton" id="2021">
                         <description>Toggle TVShow Fanart</description>
                         <include>ButtonCommonValues</include>
                         <label>31307</label>
@@ -518,7 +545,7 @@
                         <selected>Skin.HasSetting(VideoLibraryTVFanart)</selected>
                         <visible>Container.Content(TVShows) | Container.Content(Seasons) | Container.Content(Episodes)</visible>
                     </control>
-                    <control type="radiobutton" id="2061">
+                    <control type="radiobutton" id="2022">
                         <description>Toggle TVShow BlackFanart</description>
                         <include>ButtonCommonValues</include>
                         <label>41203</label>
@@ -528,7 +555,7 @@
                         <selected>Skin.HasSetting(VideoLibraryBlackTVFanart)</selected>
                         <enable>Skin.HasSetting(VideoLibraryTVFanart)</enable>
                     </control>
-                    <control type="radiobutton" id="203">
+                    <control type="radiobutton" id="2023">
                         <description>Toggle MusicVideo Fanart</description>
                         <include>ButtonCommonValues</include>
                         <label>31307</label>
@@ -536,15 +563,15 @@
                         <selected>Skin.HasSetting(VideoLibraryMusicVideoFanart)</selected>
                         <visible>Container.Content(MusicVideos) | Container.Content(Artists) | Container.Content(Albums)</visible>
                     </control>
-                    <control type="radiobutton" id="205">
+                    <control type="radiobutton" id="2024">
                         <description>Hide Window</description>
                         <include>ButtonCommonValues</include>
                         <label>41248</label>
                         <onclick>Skin.ToggleSetting(Smallwindowhidden)</onclick>
                         <selected>Skin.HasSetting(Smallwindowhidden)</selected>
-                        <visible>Control.IsVisible(508) + !Container.Content(TVShows) + !Container.Content(Seasons) + !Container.Content(Episodes)</visible>
+                        <visible>!Control.IsVisible(508) + !Container.Content(TVShows) + !Container.Content(Seasons) + !Container.Content(Episodes)</visible>
                     </control>
-                    <control type="radiobutton" id="206">
+                    <control type="radiobutton" id="2025">
                         <description>Hide Window</description>
                         <include>ButtonCommonValues</include>
                         <label>41248</label>
@@ -552,7 +579,7 @@
                         <selected>Skin.HasSetting(SmallwindowhiddenTV)</selected>
                         <visible>Control.IsVisible(508) + !Container.Content(Movies) | Control.IsVisible(508) + Container.Content(TVShows) + Container.Content(Seasons) + Container.Content(Episodes)</visible>
                     </control>
-                    <control type="radiobutton" id="1029">
+                    <control type="radiobutton" id="2026">
                         <description>Enable Landscape.jpg for TV FanartView</description>
                         <include>ButtonCommonValues</include>
                         <label>41084</label>
@@ -560,7 +587,7 @@
                         <onclick>Skin.ToggleSetting(tvfanart)</onclick>
                         <selected>Skin.HasSetting(tvfanart)</selected>
                     </control>
-                    <control type="radiobutton" id="1034">
+                    <control type="radiobutton" id="2027">
                         <description>Enable Seasonthumbs Season Level</description>
                         <include>ButtonCommonValues</include>
                         <label>41089</label>
@@ -568,7 +595,7 @@
                         <onclick>Skin.ToggleSetting(seasonthumbs)</onclick>
                         <selected>Skin.HasSetting(seasonthumbs)</selected>
                     </control>
-                    <control type="radiobutton" id="1033">
+                    <control type="radiobutton" id="2028">
                         <description>Enable Seasonthumbs Episode Level in TV Fanart View</description>
                         <include>ButtonCommonValues</include>
                         <label>41089</label>
@@ -576,7 +603,7 @@
                         <onclick>Skin.ToggleSetting(episodethumbs)</onclick>
                         <selected>Skin.HasSetting(episodethumbs)</selected>
                     </control>
-                    <control type="radiobutton" id="1027">
+                    <control type="radiobutton" id="2029">
                         <description>Enable Poster</description>
                         <include>ButtonCommonValues</include>
                         <label>41082</label>
@@ -585,7 +612,7 @@
                         <visible>Container.Content(TVShows) + [!Container.Content(Seasons) + !Container.Content(Episodes) + !Container.Content(Movies) + Control.IsVisible(569) | Control.IsVisible(668) | Control.IsVisible(570)]</visible>
                         <enable>!Skin.HasSetting(banner) + !Skin.HasSetting(widethumb)</enable>
                     </control>
-                    <control type="radiobutton" id="1026">
+                    <control type="radiobutton" id="2030">
                         <description>Enable Banner</description>
                         <include>ButtonCommonValues</include>
                         <label>41081</label>
@@ -594,7 +621,7 @@
                         <visible>Container.Content(TVShows) + [!Container.Content(Seasons) + !Container.Content(Episodes) + !Container.Content(Movies) + Control.IsVisible(569) | Control.IsVisible(668) | Control.IsVisible(570)]</visible>
                         <enable>!Skin.HasSetting(poster) + !Skin.HasSetting(widethumb)</enable>
                     </control>
-                    <control type="radiobutton" id="1028">
+                    <control type="radiobutton" id="2031">
                         <description>Enable Widethumb</description>
                         <include>ButtonCommonValues</include>
                         <label>41083</label>
@@ -603,7 +630,7 @@
                         <visible>Container.Content(TVShows) + [!Container.Content(Seasons) + !Container.Content(Episodes) + !Container.Content(Movies) + Control.IsVisible(569) | Control.IsVisible(668) | Control.IsVisible(570)]</visible>
                         <enable>!Skin.HasSetting(banner) + !Skin.HasSetting(poster)</enable>
                     </control>
-                    <control type="radiobutton" id="2057">
+                    <control type="radiobutton" id="2032">
                         <description>Toggle Rightlist posters</description>
                         <include>ButtonCommonValues</include>
                         <label>41247</label>
@@ -612,7 +639,7 @@
                         <visible>Control.IsVisible(569)</visible>
                         <visible>!Container.Content(TVShows) + !Container.Content(Seasons) + !Container.Content(Episodes)</visible>
                     </control>
-                    <control type="radiobutton" id="2052">
+                    <control type="radiobutton" id="2033">
                         <description>Toggle Cases</description>
                         <include>ButtonCommonValues</include>
                         <label>41245</label>
@@ -622,7 +649,7 @@
                         <visible>Control.IsVisible(569)</visible>
                         <visible>!Container.Content(TVShows) + !Container.Content(Seasons) + !Container.Content(Episodes)</visible>
                     </control>
-                    <control type="radiobutton" id="2053">
+                    <control type="radiobutton" id="2034">
                         <description>Clear Cases</description>
                         <include>ButtonCommonValues</include>
                         <label>41246</label>
@@ -631,7 +658,7 @@
                         <visible>Control.IsVisible(569) + Skin.HasSetting(showCases)</visible>
                         <visible>!Container.Content(TVShows) + !Container.Content(Seasons) + !Container.Content(Episodes)</visible>
                     </control>
-                    <control type="radiobutton" id="2054">
+                    <control type="radiobutton" id="2035">
                         <description>Toggle Bigposter Cases</description>
                         <include>ButtonCommonValues</include>
                         <label>41245</label>
@@ -640,7 +667,7 @@
                         <selected>Skin.HasSetting(showBigposterCases)</selected>
                         <visible>Control.IsVisible(556)</visible>
                     </control>
-                    <control type="radiobutton" id="2055">
+                    <control type="radiobutton" id="2036">
                         <description>Clear Bigposter Cases</description>
                         <include>ButtonCommonValues</include>
                         <label>41246</label>
@@ -648,7 +675,15 @@
                         <selected>Skin.HasSetting(showBigposterClearCases)</selected>
                         <visible>Control.IsVisible(556) + Skin.HasSetting(showBigposterCases)</visible>
                     </control>
-                    <control type="radiobutton" id="1070">
+					<!--control type="radiobutton" id="2037">
+                        <description>Use Coverflow</description>
+                        <include>ButtonCommonValues</include>
+                        <label>41602</label>
+                        <onclick>Skin.ToggleSetting(UseCoverflow)</onclick>
+                        <selected>Skin.HasSetting(UseCoverflow)</selected>
+                        <visible>Control.IsVisible(508) + Container.Content(Movies)</visible>
+                    </control-->
+                    <control type="radiobutton" id="2038">
                         <description>Enable New MPAA Rating Flags</description>
                         <include>ButtonCommonValues</include>
                         <label>41143</label>
@@ -658,9 +693,11 @@
                         <visible>!Control.IsVisible(720)</visible>
                         <visible>!Control.IsVisible(721)</visible>
                         <visible>!Control.IsVisible(668)</visible>
+						<visible>!Control.IsVisible(515)</visible>
+						<visible>!Control.IsVisible(508)</visible>
                         <visible>!Skin.HasSetting(noMPAAStudioFlags)</visible>
                     </control>
-                    <control type="radiobutton" id="1074">
+                    <control type="radiobutton" id="2039">
                         <description>Disable MPAA and Studio Flags in Fanart View Movies</description>
                         <include>ButtonCommonValues</include>
                         <label>41147</label>
@@ -672,37 +709,37 @@
                         <visible>!Control.IsVisible(668)</visible>
                         <visible>!Skin.HasSetting(newMPAAFlags)</visible>
                     </control>
-                    <control type="radiobutton" id="1154">
-                        <description>CDArt Movies</description>
+                    <control type="radiobutton" id="2040">
+                        <description>Clearart Movies</description>
                         <include>ButtonCommonValues</include>
                         <label>41273</label>
                         <onclick>Skin.ToggleSetting(showclearart)</onclick>
                         <selected>Skin.HasSetting(showclearart)</selected>
                         <visible>!Container.Content(Movies) + [Control.IsVisible(668) | Control.IsVisible(720) | Control.IsVisible(52) | Control.IsVisible(721)]</visible>
                     </control>
-					<control type="radiobutton" id="1154">
-                        <description>Show Clearart</description>
+					<control type="radiobutton" id="2041">
+                        <description>Show Disc</description>
                         <include>ButtonCommonValues</include>
                         <label>41270</label>
                         <onclick>Skin.ToggleSetting(showmoviedvd)</onclick>
                         <selected>Skin.HasSetting(showmoviedvd)</selected>
-                        <visible>!Container.Content(TVShows) + !Container.Content(Seasons)  + !Container.Content(Episodes) + [Control.IsVisible(668) | Control.IsVisible(720) | Control.IsVisible(52) | Control.IsVisible(721)]</visible>
+                        <visible>!Container.Content(TVShows) + !Container.Content(Seasons)  + !Container.Content(Episodes) + !Container.Content(Sets) + [Control.IsVisible(668) | Control.IsVisible(720) | Control.IsVisible(52) | Control.IsVisible(721)]</visible>
                     </control>
-                    <control type="button" id="44">
+                    <control type="button" id="2042">
                         <description>Download Artwork</description>
                         <include>ButtonCommonValues</include>
                         <label>41600</label>
                         <onclick>XBMC.RunScript(script.artwork.downloader, mediatype=tvshow)</onclick>
                         <visible>System.HasAddon(script.artwork.downloader) + Container.Content(tvshows)</visible>
                     </control>
-                    <control type="button" id="45">
+                    <control type="button" id="2043">
                         <description>Download Artwork</description>
                         <include>ButtonCommonValues</include>
                         <label>41600</label>
                         <onclick>XBMC.RunScript(script.artwork.downloader, mediatype=movie)</onclick>
                         <visible>System.HasAddon(script.artwork.downloader) + Container.Content(movies)</visible>
                     </control>
-					<control type="button" id="2150">
+					<control type="button" id="2044">
 						<description>Trailer Fullscreen</description>
 						<left>0</left>
 						<top>40</top>
@@ -712,7 +749,7 @@
 						<label>41205</label>
 						<enable>!IsEmpty(ListItem.Trailer)</enable>						
 					</control>					
-                    <control type="button" id="8">
+                    <control type="button" id="2045">
                         <description>Search</description>
                         <include>ButtonCommonValues</include>
                         <label>137</label>

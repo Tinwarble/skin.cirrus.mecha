@@ -4,6 +4,8 @@
     <!-- ================================= FANART Movie Sets VIEW ID 766 ================================ -->
     <!-- ====================== Movies ===================== -->
     <include name="FanartSlideMovieSets">
+		<control type="group">	
+			<visible>!IsEmpty(Window(home).Property(Set.Movie.2.Art(fanart)))</visible>
         <control type="image">
             <!-- bottom bar background -->
             <left>0</left>
@@ -384,5 +386,6 @@
                 </control>
             </control>
         </control>
+		</control>
     </include>
 </includes>

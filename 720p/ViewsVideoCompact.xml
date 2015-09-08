@@ -3,412 +3,589 @@
   <!-- ===================================================================================== -->
   <!-- ============================== Compact VIEW ID 515 ================================ -->
   <!-- ====================Movies, TV Shows, Seasons, Episodes, Music ====================== -->
-  <include name="Compact">
-    <control type="group">
-      <visible>Control.IsVisible(515)</visible>
-      <control type="image">
-        <left>0</left>
-        <top>120</top>
-        <width>1280</width>
-        <height>550</height>
-        <texture>videoinfoback.png</texture>
-        <aspectratio>stretch</aspectratio>
-      </control>
-      <control type="image">
-        <left>-100</left>
-        <top>120</top>
-        <width>1480</width>
-        <height>480</height>
-        <texture>videoinfoback.png</texture>
-      </control>
-      <control type="image">
-        <!-- Black gradient up the top -->
-        <left>0</left>
-        <top>0</top>
-        <width>1280</width>
-        <height>250</height>
-        <texture>blackgradientvert.png</texture>
-        <aspectratio>stretch</aspectratio>
-      </control>
-      <control type="image">
-        <left>10</left>
-        <top>176</top>
-        <width>450</width>
-        <height>5</height>
-        <aligny>bottom</aligny>
-        <texture flipx="true" border="2,2,2,2" diffuse="rowdiffuse.png">rowblank.png</texture>
-        <visible>!Skin.HasSetting(videowindowglobal) | !Player.HasVideo</visible>
-        <visible>!ListItem.IsFolder</visible>
-      </control>
-      <control type="fixedlist" id="515">
-        <!-- start list -->
-        <visible>Skin.HasSetting(compact_view)</visible>
-        <left>460</left>
-        <top>142</top>
-        <width>500</width>
-        <height>435</height>
-        <orientation>vertical</orientation>
-        <focusposition>5</focusposition>
-        <!-- <movement>9</movement> -->
-        <onleft>2</onleft>
-        <onup>515</onup>
-        <ondown>515</ondown>
-        <onright>ActivateWindow(1121)</onright>
-        <viewtype label="41120">list</viewtype>
-        <pagecontrol>60</pagecontrol>
-        <!-- <scrolltime>200</scrolltime> -->
-        <visible>Container.Content(Movies)</visible>
-        <itemlayout height="40" width="580">
-          <control type="image">
-            <left>0</left>
-            <top>0</top>
-            <width>700</width>
-            <height>40</height>
-            <aligny>bottom</aligny>
-            <texture border="2,2,2,2" diffuse="rowdiffuse.png">rowblank2.png</texture>
-            <aspectratio>stretch</aspectratio>
-          </control>
-          <control type="label">
-            <description>Title</description>
-            <left>15</left>
-            <top>8</top>
-            <width>445</width>
-            <height>25</height>
-            <label>$INFO[listitem.Label]</label>
-            <align>right</align>
-            <aligny>center</aligny>
-            <font>cirrus_24</font>
-            <textcolor>grey2</textcolor>
-            <scroll>false</scroll>
-          </control>
-        </itemlayout>
-        <focusedlayout height="70" width="580">
-          <control type="image">
-            <left>0</left>
-            <top>0</top>
-            <width>700</width>
-            <height>70</height>
-            <texture border="2,2,2,2">rowfocusback.png</texture>
-            <aspectratio>stretch</aspectratio>
-          </control>
-          <control type="label">
-            <description>Title</description>
-            <left>15</left>
-            <top>8</top>
-            <width>445</width>
-            <height>25</height>
-            <label>$INFO[listitem.Label]</label>
-            <align>right</align>
-            <aligny>center</aligny>
-            <font>cirrus_24_Bold</font>
-            <textcolor>black</textcolor>
-            <scroll>false</scroll>
-            <visible>Container.Content(Movies)</visible>
-          </control>
-          <control type="image">
-            <description>Rating value</description>
-            <left>300r</left>
-            <top>40</top>
-            <width>183</width>
-            <height>25</height>
-            <color>accent</color>
-            <texture>$INFO[Listitem.StarRating]</texture>
-            <colordiffuse>black</colordiffuse>
-            <visible>!Skin.HasSetting(imdbnr) + Container.Content(Movies)</visible>
-            <visible>!system.getbool(filelists.showparentdiritems)</visible>
-            <aspectratio>keep</aspectratio>
-          </control>
-          <control type="label">
-            <description>Rating value</description>
-            <left>203r</left>
-            <top>40</top>
-            <width>183</width>
-            <height>25</height>
-            <textcolor>black</textcolor>
-            <font>cirrus_18_Bold</font>
-            <align>left</align>
-            <label>$LOCALIZE[563] $INFO[Listitem.Rating]</label>
-            <colordiffuse>black</colordiffuse>
-            <visible>Skin.HasSetting(imdbnr) + Container.Content(Movies)</visible>
-            <visible>!system.getbool(filelists.showparentdiritems)</visible>
-          </control>
-        </focusedlayout>
-      </control>
-      <control type="group">
-        <control type="label">
-          <description>Tagline label</description>
-          <left>15</left>
-          <top>120</top>
-          <width>350</width>
-          <height>50</height>
-          <label>$INFO[ListItem.Tagline]</label>
-          <align>left</align>
-          <aligny>center</aligny>
-          <font>cirrus_24</font>
-          <textcolor>white</textcolor>
-          <shadowcolor>black</shadowcolor>
-          <scroll>true</scroll>
-          <visible>!Skin.HasSetting(videowindowglobal) | !Player.HasVideo</visible>
-        </control>
-        <control type="label">
-          <description>Genre label</description>
-          <left>15</left>
-          <top>185</top>
-          <width>350</width>
-          <height>25</height>
-          <label>$INFO[ListItem.Genre,[COLOR=accent]$LOCALIZE[515]:[/COLOR] ]</label>
-          <align>left</align>
-          <aligny>center</aligny>
-          <font>cirrus_24</font>
-          <textcolor>white</textcolor>
-          <shadowcolor>black</shadowcolor>
-          <scroll>true</scroll>
-          <visible>!Skin.HasSetting(videowindowglobal) | !Player.HasVideo</visible>
-        </control>
-        <control type="label">
-          <description>Year Label</description>
-          <left>15</left>
-          <top>215</top>
-          <width>320</width>
-          <height>30</height>
-          <label>$INFO[ListItem.Year,[COLOR=accent]$LOCALIZE[562]:[/COLOR] ]</label>
-          <align>left</align>
-          <aligny>center</aligny>
-          <font>cirrus_24</font>
-          <textcolor>white</textcolor>
-          <shadowcolor>black</shadowcolor>
-          <visible>!Skin.HasSetting(videowindowglobal) | !Player.HasVideo</visible>
-        </control>
-        <control type="label">
-          <description>Runtime label</description>
-          <left>15</left>
-          <top>245</top>
-          <width>320</width>
-          <height>30</height>
-          <label>$INFO[ListItem.Duration,[COLOR=accent]$LOCALIZE[31054]:[/COLOR] ] $LOCALIZE[12391]</label>
-          <align>left</align>
-          <aligny>center</aligny>
-          <font>cirrus_24</font>
-          <textcolor>white</textcolor>
-          <shadowcolor>black</shadowcolor>
-          <visible>!ListItem.IsFolder</visible>
-          <visible>!Skin.HasSetting(videowindowglobal) | !Player.HasVideo</visible>
-        </control>
-        <control type="label">
-          <description>Runtime label</description>
-          <left>15</left>
-          <top>275</top>
-          <width>320</width>
-          <height>30</height>
-          <label>$INFO[ListItem.Director,[COLOR=accent]$LOCALIZE[20339]:[/COLOR] ]</label>
-          <align>left</align>
-          <aligny>center</aligny>
-          <font>cirrus_24</font>
-          <textcolor>white</textcolor>
-          <shadowcolor>black</shadowcolor>
-          <visible>!Skin.HasSetting(videowindowglobal) | !Player.HasVideo</visible>
-          <visible>!ListItem.IsFolder</visible>
-        </control>
-        <control type="textbox">
-          <!-- CUSTOM mod plotoutline -->
-          <description>plot</description>
-          <left>15</left>
-          <top>315</top>
-          <width>440</width>
-          <height>195</height>
-          <label>$INFO[ListItem.Plot]</label>
-          <align>justify</align>
-          <aligny>top</aligny>
-          <font>cirrus_20</font>
-          <textcolor>white</textcolor>
-          <shadowcolor>black</shadowcolor>
-          <autoscroll time="3000" delay="13000" repeat="8000">Skin.HasSetting(AutoScroll)</autoscroll>
-          <visible>!Skin.HasSetting(videowindowglobal) | !Player.HasVideo</visible>
-        </control>
-        <control type="textbox">
-          <!-- CUSTOM mod plotoutline -->
-          <description>plot</description>
-          <left>15</left>
-          <top>380</top>
-          <width>440</width>
-          <height>175</height>
-          <label>$INFO[ListItem.Plot]</label>
-          <align>justify</align>
-          <aligny>top</aligny>
-          <font>cirrus_20</font>
-          <textcolor>white</textcolor>
-          <shadowcolor>black</shadowcolor>
-          <autoscroll time="3000" delay="13000" repeat="8000">Skin.HasSetting(AutoScroll)</autoscroll>
-          <visible>Skin.HasSetting(videowindowglobal) + Player.HasVideo</visible>
-        </control>
-        <control type="image">
-          <!-- Top250IMDB Mod 1.2 -->
-          <left>466</left>
-          <top>619</top>
-          <width>88</width>
-          <height>30</height>
-          <aspectratio aligny="bottom">stretch</aspectratio>
-          <fadetime>IconCrossfadeTime</fadetime>
-          <texture>IMDBFlag.png</texture>
-          <visible>!IsEmpty(ListItem.Top250)</visible>
-          <colordiffuse>accent</colordiffuse>
-        </control>
-        <control type="label">
-          <!-- Top250IMDB Mod 1.2 -->
-          <description>top250</description>
-          <left>325</left>
-          <top>617</top>
-          <width>400</width>
-          <height>30</height>
-          <label>$INFO[ListItem.Top250]</label>
-          <align>center</align>
-          <aligny>center</aligny>
-          <font>cirrus_38_Bold</font>
-          <textcolor>white</textcolor>
-          <shadowcolor>black</shadowcolor>
-        </control>
-      </control>
-      <control type="group">
-        <left>870</left>
-        <top>100</top>
-        <visible>Control.IsVisible(515)</visible>
-        <control type="image">
-          <left>100</left>
-          <top>37</top>
-          <width>295</width>
-          <height>440</height>
-          <aspectratio aligny="bottom">stretch</aspectratio>
-          <texture>black-back.png</texture>
-          <bordertexture border="8">ContentPanelvertical.png</bordertexture>
-          <bordersize>8</bordersize>
-          <visible>!IsEmpty(ListItem.Thumb)</visible>
-        </control>
-        <control type="image">
-          <left>100</left>
-          <top>37</top>
-          <width>295</width>
-          <height>440</height>
-          <aspectratio aligny="bottom">stretch</aspectratio>
-          <fadetime>IconCrossfadeTime</fadetime>
-          <texture background="true">$INFO[ListItem.Icon]</texture>
-          <bordersize>8</bordersize>
-          <visible>!IsEmpty(ListItem.Thumb)</visible>
-        </control>
-        <control type="image">
-          <left>296</left>
-          <top>40</top>
-          <width>91</width>
-          <height>91</height>
-          <aspectratio>keep</aspectratio>
-          <texture>Overlayicons/$INFO[ListItem.Overlay]</texture>
-        </control>
-        <control type="image">
-          <left>108</left>
-          <top>45</top>
-          <width>91</width>
-          <height>91</height>
-          <aspectratio aligny="bottom">stretch</aspectratio>
-          <texture>Overlayicons/TrailerOverlay.png</texture>
-          <visible>Control.IsVisible(515) + Container.Content(movies) + !IsEmpty(ListItem.Trailer) + !Skin.HasSetting(trailerflag)</visible>
-        </control>
-      </control>
-      <control type="grouplist">
-        <description>MPAA Rating Flagging Images</description>
-        <left>995</left>
-        <top>606</top>
-        <width>249</width>
-        <align>left</align>
-        <itemgap>0</itemgap>
-        <orientation>horizontal</orientation>
-        <include>VideoMPAAFlaggingConditions</include>
-        <visible>!Skin.HasSetting(NewMPAAFlags)</visible>
-        <visible>!Skin.HasSetting(noMPAAStudioFlags)</visible>
-        <visible>!ListItem.IsFolder</visible>
-      </control>
-      <control type="grouplist">
-        <description>MPAA NEW Rating Flagging Images</description>
-        <left>1050</left>
-        <top>617</top>
-        <width>249</width>
-        <align>left</align>
-        <itemgap>0</itemgap>
-        <orientation>horizontal</orientation>
-        <include>NewVideoMPAAFlaggingConditions</include>
-        <visible>Skin.HasSetting(NewMPAAFlags)</visible>
-        <visible>!Skin.HasSetting(noMPAAStudioFlags)</visible>
-        <visible>!ListItem.IsFolder</visible>
-      </control>
-      <control type="image">
-        <width>112</width>
-        <height>65</height>
-        <left>750</left>
-        <top>600</top>
-        <aspectratio align="center">keep</aspectratio>
-        <texture border="2">$INFO[listitem.Studio,special://skin/extras/flagging/studios/,.png]</texture>
-      </control>
-      <control type="image">
-        <left>880</left>
-        <top>620</top>
-        <width>70</width>
-        <height>31</height>
-        <aspectratio>keep</aspectratio>
-        <fadetime>FanartCrossfadeTime</fadetime>
-        <texture>Overlayicons/trailer.png</texture>
-        <visible>!IsEmpty(ListItem.Trailer) + Skin.HasSetting(trailerflag)</visible>
-      </control>
-      <control type="grouplist">
-        <description>Media Codec Flagging Images</description>
-        <left>-35</left>
-        <top>620</top>
-        <width>540</width>
-        <align>center</align>
-        <itemgap>15</itemgap>
-        <orientation>horizontal</orientation>
-        <include>VideoCodecFlaggingConditions</include>
-        <include>AudioCodecFlaggingConditions</include>
-        <include>AspectCodecFlaggingConditions</include>
-      </control>
-      <control type="image">
-        <left>15</left>
-        <top>50</top>
-        <width>540</width>
-        <height>303</height>
-        <texture>black-back.png</texture>
-        <bordertexture border="8">ContentPanelvertical.png</bordertexture>
-        <bordersize>8</bordersize>
-        <aspectratio>stretch</aspectratio>
-        <align>right</align>
-        <visible>Skin.Hassetting(videowindowglobal)</visible>
-        <visible>Player.HasVideo</visible>
-        <visible>!Skin.Hassetting(videowindownoborder)</visible>
-        <visible>Control.IsVisible(515)</visible>
-      </control>
-      <control type="videowindow" id="8">
-        <left>30</left>
-        <top>64</top>
-        <width>511</width>
-        <height>275</height>
-        <align>right</align>
-        <visible>Skin.Hassetting(videowindowglobal)</visible>
-        <visible>Control.IsVisible(515)</visible>
-      </control>
-      <control type="label">
-        <description>Title label</description>
-        <left>114</left>
-        <top>282</top>
-        <height>30</height>
-        <width>330</width>
-        <label>$INFO[VideoPlayer.Title]$INFO[VideoPlayer.Year,[COLOR=accent] (,)[/COLOR]]</label>
-        <align>center</align>
-        <aligny>center</aligny>
-        <font>cirrus_20</font>
-        <textcolor>white</textcolor>
-        <shadowcolor>black</shadowcolor>
-        <visible>Skin.HasSetting(videowindowglobal)</visible>
-        <visible>Player.HasVideo</visible>
-        <visible>Control.IsVisible(515)</visible>
-        <visible>!Skin.HasSetting(videonotitle)</visible>
-      </control>
-    </control>
-  </include>
+	<include name="Compact">	
+		<control type="group">
+			<visible>Control.IsVisible(515)</visible>
+			<!--control type="image">
+				<top>0</top>
+				<left>0</left>
+				<width>1280</width>
+				<height>720</height>
+				<aspectratio>stretch</aspectratio>
+				<texture>special://skin/media/Compact/background5.png</texture>							
+				<visible>Control.IsVisible(515)</visible>
+			</control-->		
+		<!-- COVERART FLOOR -->	
+			<control type="image">
+				<top>594</top>
+				<left>-25</left>
+				<width>1400</width>
+				<height>68</height>
+				<aspectratio>stretch</aspectratio>
+				<texture>special://skin/media/Showcase_mod/showcase_diffuser2.png</texture>							
+				<visible>Control.IsVisible(515)</visible>
+			</control>		
+		<!-- Metadata & Title Background -->	
+			<control type="group">				
+				<animation effect="slide" start="0" end="-500" time="300" delay="0" condition="!IsEmpty(ListItem.Year)" reversible="true">Conditional</animation>
+				<top>300</top>							
+				<control type="image">
+					<left>498</left>
+					<top>100</top>
+					<width>1041</width>
+					<height>266</height>
+					<texture>special://skin/media/Compact/meta_bg.png</texture>					
+				</control>
+			</control>
+		<!-- Clearlogo & Studio Background -->	
+			<control type="group">
+				<visible>!Skin.HasSetting(ClearlogoStudio</visible>
+				<animation effect="slide" start="0" end="472" time="300" delay="300" condition="!IsEmpty(ListItem.Art(clearlogo) | !IsEmpty(ListItem.Art(tvshow.clearlogo)" reversible="true">Conditional</animation>
+				<top>198</top>							
+				<control type="image">
+					<left>-475</left>
+					<top>101</top>
+					<width>497</width>
+					<height>106</height>
+					<texture>special://skin/media/Compact/clearlogo_bg.png</texture>					
+				</control>
+			<!-- Movie Clearlogo -->
+				<control type="image">				
+					<left>-250</left>
+					<top>106</top>
+					<width>198</width>
+					<height>92</height>
+					<texture>$INFO[ListItem.Art(clearlogo)]</texture>					
+					<aspectratio>keep</aspectratio>
+				</control>
+			<!-- TV Show Clearlogo -->
+				<control type="image">				
+					<left>-250</left>
+					<top>106</top>
+					<width>198</width>
+					<height>92</height>					
+					<texture>$INFO[ListItem.Art(tvshow.clearlogo)]</texture>
+					<aspectratio>keep</aspectratio>
+				</control>
+			<!-- Studio Logo -->
+				<control type="image">
+					<left>-425</left>
+					<top>115</top>
+					<width>112</width>
+					<height>76</height>
+					<aspectratio align="center">keep</aspectratio>
+					<texture border="2">$INFO[listitem.Studio,special://skin/extras/flagging/studios/,.png]</texture>
+					<visible></visible>
+				</control>			
+			</control>			
+		<!-- Coverart Reflection with Overlay -->
+			<control type="image">
+				<left>1040</left>
+				<top>629</top>				
+				<width>212</width>
+				<height>312</height>
+				<aspectratio aligny="bottom">stretch</aspectratio>
+				<fadetime>IconCrossfadeTime</fadetime>
+				<texture diffuse="special://skin/media/diffuser2.png" fallback="special://skin/media/Compact/coverart_bg.png" flipy="true">$INFO[ListItem.Icon]</texture>
+				<bordertexture border="6">ContentPanelvertical.png</bordertexture>
+				<bordersize>8</bordersize>
+				<animation effect="slide" start="0,0" end="0,-10" time="0" delay="0" condition="Skin.HasSetting(HideCoverArtOverlay)" reversible="true">Conditional</animation>
+			</control>	
+		<!-- Coverart -->
+			<control type="image">
+				<left>1040</left>
+				<top>308</top>
+				<width>212</width>
+				<height>312</height>
+				<aspectratio aligny="bottom">stretch</aspectratio>
+				<fadetime>IconCrossfadeTime</fadetime>
+				<texture fallback="special://skin/media/Compact/coverart_bg.png">$INFO[ListItem.Icon]</texture>
+				<bordertexture border="6">ContentPanelvertical.png</bordertexture>
+				<bordersize>8</bordersize>
+			</control>
+		<!-- Coverart Overlay -->
+			<control type="image">				
+				<left>1035</left>
+				<top>304</top>
+				<width>245</width>
+				<height>382</height>
+				<texture>special://skin/media/Compact/coverart_overlay.png</texture>
+				<aspectratio>stretch</aspectratio>
+				<visible>!Skin.HasSetting(HideCoverArtOverlay)</visible>
+			</control>		
+		
+		<!-- TITLE SCROLL CONTROL -->	
+			<control type="fixedlist" id="515">
+				<!-- start list -->
+				<visible>Skin.HasSetting(compact_view)</visible>
+				<left>530</left>
+				<top>410</top>
+				<width>500</width>
+				<height>180</height>
+				<orientation>vertical</orientation>
+				<focusposition>2</focusposition>
+				<!-- <movement>9</movement> -->
+				<onleft>62</onleft>
+				<onup>515</onup>
+				<ondown>515</ondown>				
+				<viewtype label="41120">list</viewtype>
+				<pagecontrol>62</pagecontrol>
+				<!-- <scrolltime>200</scrolltime> -->
+				<visible>Container.Content(Movies) | Container.Content(TVShows) | Container.Content(Seasons)</visible>
+				<itemlayout height="31" width="580">
+				<!-- Non-Focused Title Separator -->
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>700</width>
+						<height>31</height>
+						<aligny>bottom</aligny>
+						<texture border="2" diffuse="rowdiffuse.png">rowblank2.png</texture>
+						<aspectratio>stretch</aspectratio>
+					</control>
+				<!-- Non-Focused Title -->
+					<control type="label">						
+						<left>15</left>
+						<top>3</top>
+						<width>445</width>
+						<height>25</height>
+						<label>$INFO[listitem.Label]</label>
+						<align>right</align>
+						<aligny>center</aligny>
+						<font>cirrus_18</font>
+						<textcolor>grey2</textcolor>
+						<scroll>false</scroll>
+					</control>
+				<!-- Non-Focused IMDB Rating Text -->
+					<control type="label">
+						<description>Rating value</description>
+						<left>468</left>
+						<top>3</top>
+						<width>30</width>
+						<height>25</height>
+						<textcolor>grey2</textcolor>
+						<font>cirrus_16</font>
+						<align>right</align>
+						<aligny>center</aligny>
+						<label>$INFO[Listitem.Rating]</label>
+						<colordiffuse>black</colordiffuse>
+						<visible>!IsEmpty(ListItem.Thumb)</visible> 
+					</control>
+				</itemlayout>
+				<focusedlayout height="30" width="580">
+				<!-- Title Focused Image -->
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>700</width>
+						<height>30</height>
+						<texture border="2,2,2,2">rowfocusback.png</texture>
+						<aspectratio>stretch</aspectratio>
+					</control>
+				<!-- Focused Title -->
+					<control type="label">
+						<description>Title</description>
+						<left>15</left>
+						<top>3</top>
+						<width>445</width>
+						<height>25</height>
+						<label>$INFO[listitem.Label]</label>
+						<align>right</align>
+						<aligny>center</aligny>
+						<font>cirrus_20_Bold</font>
+						<textcolor>black</textcolor>
+						<scroll>false</scroll>						
+					</control>
+				<!-- Focused IMDB Rating Text -->
+					<control type="label">
+						<description>Rating value</description>
+						<left>468</left>
+						<top>3</top>
+						<width>30</width>
+						<height>25</height>
+						<textcolor>black</textcolor>
+						<font>cirrus_16_bold</font>
+						<align>right</align>
+						<aligny>center</aligny>
+						<label>$INFO[Listitem.Rating]</label>
+						<colordiffuse>black</colordiffuse>
+						<visible>!IsEmpty(ListItem.Thumb)</visible> 
+					</control>					
+				<!-- Watching-Watched Icon -->
+					<control type="image">                            
+						<left>10</left>
+						<top>3</top>
+						<width>25</width>
+						<height>25</height>
+						<aspectratio>keep</aspectratio>
+						<texture>$VAR[media:Progress]</texture>
+						<visible>!Skin.HasSetting(Smallwindowhidden)</visible>
+						<visible>Player.HasVideo | !Skin.HasSetting(DisableInProgress)</visible>
+					</control>
+				</focusedlayout>
+			</control>
+		<!-- Scroll Bar -->
+            <control type="scrollbar" id="62">
+                <left>515</left>
+                <top>400</top>
+                <width>10</width>
+                <height>200</height>
+				<aspectratio>stretch</aspectratio>
+                <texturesliderbackground border="0,8,0,8">ScrollBarh.png</texturesliderbackground>
+                <textureslidernib>ScrollBarv.png</textureslidernib>
+                <textureslidernibfocus>ScrollBarv_bar_focus.png</textureslidernibfocus>
+                <onleft>2</onleft>
+                <onright>515</onright>
+                <showonepage>false</showonepage>
+                <orientation>vertical</orientation>
+                <visible allowhiddenfocus="true">Control.IsVisible(515) + Control.HasFocus(62)</visible>
+            </control>
+		<!-- Separator -->
+			<control type="image">					
+				<left>520</left>
+				<top>420</top>
+				<width>1</width>
+				<height>175</height>
+				<aspectratio>stretch</aspectratio>					
+				<texture>special://skin/media/vseparator.png</texture>					
+			</control>
+		<!-- Genre Text -->
+			<control type="group">
+				<left>20</left>
+				<top>400</top>
+				<visible>Control.IsVisible(515)</visible>
+				<animation effect="fade" start="0" end="100" time="300" delay="300" condition="!IsEmpty(ListItem.Year)" reversible="false">Conditional</animation>
+				<control type="label">
+					<description>Genre label</description>
+					<left>7</left>
+					<top>9</top>
+					<width>470</width>
+					<height>25</height>
+					<label>$VAR[ListItemGenre,[COLOR=accent][/COLOR]]</label>
+					<align>left</align>
+					<aligny>center</aligny>
+					<font>cirrus_18</font>
+					<textcolor>white</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<scroll>true</scroll>
+					<visible>!Skin.HasSetting(videowindowglobal) | !Player.HasVideo</visible>
+				</control>
+			<!-- Year & Duration Text -->
+				<control type="label">					
+					<left>7</left>
+					<top>30</top>
+					<width>185</width>
+					<height>25</height>
+					<label>$INFO[ListItem.Year]    $INFO[ListItem.Duration] $LOCALIZE[12391]</label>
+					<align>left</align>
+					<aligny>center</aligny>
+					<font>cirrus_18</font>
+					<textcolor>white</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<visible>!ListItem.IsFolder</visible>
+				</control>
+			<!-- Dot Separator - Year/Duration -->
+				<control type="image">
+                    <description>Dot</description>
+                    <left>49</left>
+                    <top>430</top>
+                    <width>8</width>
+                    <height>25</height>
+                    <texture>Dot.png</texture>
+                    <aspectratio align="center" aligny="center">keep</aspectratio>
+					<visible>!ListItem.IsCollection + !IsEmpty(ListItem.Year) + !Container.Content(TVShows) + !Container.Content(Seasons)</visible>
+                </control>
+			<!-- Collection Duration Text -->
+                <control type="fadelabel">
+                    <left>7</left>
+                    <top>30</top>
+                    <width>240</width>
+                    <height>25</height>
+                    <font>cirrus_18</font>
+                    <textcolor>white</textcolor>
+                    <scroll>true</scroll>
+                    <align>left</align>
+                    <aligny>center</aligny>
+                    <label>[COLOR=accent]Total Runtime:[/COLOR] $VAR[ListItemRuntime]</label>
+                    <scrollout>false</scrollout>
+                    <pauseatend>2000</pauseatend>
+                    <visible>ListItem.IsCollection</visible>
+                </control>
+			<!-- Collection Count Text -->
+                <control type="label">
+                    <left>7</left>
+                    <top>47</top>
+                    <width>328</width>
+                    <height>30</height>
+                    <font>cirrus_18</font>
+                    <textcolor>white</textcolor>
+                    <scroll>true</scroll>
+                    <align>left</align>
+                    <aligny>center</aligny>
+					<autoscroll time="6000" delay="5000" repeat="5000"></autoscroll>
+					<orientation>horizontal</orientation>
+                    <label>[COLOR=accent]Movies In Collection:[/COLOR] $VAR[ListItemCount]</label>
+                    <visible>ListItem.IsCollection</visible>
+				</control>
+			<!-- Director Text -->	
+				<control type="label">
+					<description>Director label</description>
+					<left>7</left>
+					<top>47</top>
+					<width>470</width>
+					<height>30</height>
+					<label>$INFO[ListItem.Director,[COLOR=accent]$LOCALIZE[20339]:[/COLOR] ]</label>
+					<align>left</align>
+					<aligny>center</aligny>
+					<font>cirrus_18</font>
+					<textcolor>white</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<visible>!Skin.HasSetting(videowindowglobal) | !Player.HasVideo</visible>
+					<visible>!ListItem.IsFolder</visible>
+				</control>
+			<!-- Plot Text -->	
+				<control type="textbox">				
+					<description>plot</description>
+					<left>7</left>
+					<top>80</top>
+					<width>470</width>
+					<height>112</height>
+					<label>$VAR[ListItemPlot]</label>
+					<align>justify</align>
+					<aligny>top</aligny>
+					<font>cirrus_18</font>
+					<textcolor>white</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<autoscroll time="3000" delay="3000" repeat="8000">Skin.HasSetting(AutoScroll)</autoscroll>
+					<visible>!Skin.HasSetting(videowindowglobal) | !Player.HasVideo</visible>
+				</control>
+			<!-- Plot Text Reflection-->
+				<control type="textbox">
+					<animation effect="rotatex" center="520,0" start="0" end="180" condition="true">Conditional</animation>					
+					<left>7</left>
+					<top>707</top>
+					<width>470</width>
+					<height>112</height>
+					<font>cirrus_18</font>
+					<align>justify</align>
+					<textcolor>white</textcolor>
+					<label flipy="true">[COLOR=fffffff]$VAR[ListItemPlot][/COLOR]</label>				
+					<align>justify</align>
+					<autoscroll time="3000" delay="3000" repeat="8000">Skin.HasSetting(autoscroll)</autoscroll>	
+					<visible>Control.IsVisible(515)</visible>
+				</control>
+				<control type="textbox">
+					<!-- CUSTOM mod plotoutline -->
+					<description>plot</description>
+					<left>7</left>
+					<top>80</top>
+					<width>440</width>
+					<height>175</height>
+					<label>$INFO[ListItem.Plot]</label>
+					<align>justify</align>
+					<aligny>top</aligny>
+					<font>cirrus_20</font>
+					<textcolor>white</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<autoscroll time="3000" delay="13000" repeat="8000">Skin.HasSetting(AutoScroll)</autoscroll>
+					<visible>Skin.HasSetting(videowindowglobal) + Player.HasVideo</visible>
+				</control>
+			<!-- First Aired Text -->	
+				<control type="fadelabel">			
+					<left>2</left>
+					<top>30</top>
+					<width>260</width>
+					<height>25</height>
+					<font>cirrus_18</font>
+					<textcolor>white</textcolor>
+					<scroll>true</scroll>
+					<align>left</align>
+					<aligny>center</aligny>
+					<label>[COLOR=accent]$LOCALIZE[20416]:[/COLOR] $INFO[ListItem.Premiered]</label>
+					<scrollout>false</scrollout>
+					<pauseatend>2000</pauseatend>
+					<visible>Container.Content(TVShows) | Container.Content(Seasons)</visible>			
+					<visible>!IsEmpty(ListItem.Thumb)</visible> 
+				</control>
+			<!-- Nexted Aired Text -->	
+				<control type="label">			
+					<description>Nextaired</description>
+					<left>217</left>
+					<top>30</top>
+					<width>260</width>
+					<height>25</height>
+					<label>$VAR[NextAired]</label>
+					<align>right</align>
+					<aligny>center</aligny>
+					<font>cirrus_18</font>
+					<scroll>true</scroll>
+					<visible>!Container(515).OnNext + !Container(515).OnPrevious + Container.Content(TVShows)</visible>	
+					<visible>Container.Content(TVShows)</visible>
+					<visible>!IsEmpty(ListItem.Thumb)</visible> 
+				</control>
+			<!-- TV Show Episode Count Text - Seasons -->
+				<control type="label">						
+					<left>7</left>
+					<top>47</top>
+					<width>350</width>
+					<height>30</height>
+					<label fallback="416">[COLOR=accent]$LOCALIZE[20360]: [/COLOR]$INFO[listitem.episode] [COLOR=grey] ($INFO[ListItem.Property(WatchedEpisodes),, $LOCALIZE[16102]] - $INFO[ListItem.Property(UnWatchedEpisodes), , $LOCALIZE[16101]])[/COLOR]</label>
+					<align>left</align>
+					<aligny>center</aligny>
+					<font>cirrus_18</font>
+					<scroll>true</scroll>
+					<visible>!Container(515).OnNext + !Container(515).OnPrevious) + !IsEmpty(ListItem.Title)</visible>				
+					<visible>Container.Content(TVShows) | Container.Content(seasons)</visible>
+					<visible>!IsEmpty(ListItem.Thumb)</visible> 
+				</control>					
+			</control>
+		
+		<!-- BOTTOM INFO BAR -->
+			<control type="group">
+				<animation type="WindowOpen" reversible="false">
+					<effect type="zoom" start="80" end="100" center="640,360" easing="out" tween="back" time="300"/>
+					<effect type="fade" start="0" end="100" time="300"/>
+				</animation>
+				<animation type="WindowClose" reversible="false">
+					<effect type="zoom" start="100" end="80" center="640,360" easing="in" tween="back" time="300"/>
+					<effect type="fade" start="100" end="0" time="300"/>
+				</animation>
+				<visible>Control.IsVisible(515)</visible>
+				<control type="image"> 
+					<left>0</left>
+					<top>655</top>
+					<width>1280</width>
+					<height>65</height>
+					<aspectratio>stretch</aspectratio>
+					<texture background="true">special://skin/media/Showcase_mod/showcase_infobar.png</texture>
+				</control>
+			</control>
+			<control type="group">
+				<left>870</left>
+				<top>100</top>
+				<visible>Control.IsVisible(515)</visible>
+				<!--control type="image">
+					<left>100</left>
+					<top>37</top>
+					<width>295</width>
+					<height>440</height>
+					<aspectratio aligny="bottom">stretch</aspectratio>
+					<texture>black-back.png</texture>
+					<bordertexture border="8">ContentPanelvertical.png</bordertexture>
+					<bordersize>8</bordersize>
+					<visible>!IsEmpty(ListItem.Thumb)</visible>
+				</control-->
+			
+			
+
+				<!--control type="image">
+					<left>296</left>
+					<top>40</top>
+					<width>91</width>
+					<height>91</height>
+					<aspectratio>keep</aspectratio>
+					<texture>Overlayicons/$INFO[ListItem.Overlay]</texture>
+				</control-->
+				<!--control type="image">
+					<left>108</left>
+					<top>45</top>
+					<width>91</width>
+					<height>91</height>
+					<aspectratio aligny="bottom">stretch</aspectratio>
+					<texture>Overlayicons/TrailerOverlay.png</texture>
+					<visible>Control.IsVisible(515) + Container.Content(movies) + !IsEmpty(ListItem.Trailer) + !Skin.HasSetting(trailerflag)</visible>
+				</control-->
+			</control>
+		<!-- Bottom Infobar Info -->
+			<control type="group">				
+				<top>645</top>
+			<!-- Tagline text -->
+                <control type="fadelabel">
+                    <left>420</left>
+                    <top>25</top>
+                    <width>440</width>
+                    <height>30</height>
+                    <font>cirrus_24</font>
+                    <textcolor>white</textcolor>
+                    <scroll>true</scroll>
+                    <align>center</align>
+                    <aligny>center</aligny>
+                    <label>[COLOR=accent]$INFO[ListItem.Tagline][/COLOR]</label>					
+                    <scrollout>false</scrollout>
+                    <pauseatend>2000</pauseatend>
+                    <visible>!ListItem.IsFolder</visible>
+                </control>
+			<!-- MPAA Rating -->
+				<control type="image">
+					<description>MPAA Rating Flagging Images</description>
+					<left>1052</left>
+					<top>17</top>
+					<width>196</width>
+					<height>45</height>
+					<align>left</align>
+					<itemgap>0</itemgap>
+					<orientation>horizontal</orientation>
+					<texture>$VAR[MpaaRating,special://skin/extras/flagging/ratings/,.png]</texture>					
+					<visible>!ListItem.IsFolder</visible>
+					<visible>!Skin.HasSetting(noMPAAStudioFlags)</visible>
+				</control>				
+			<!-- Codec Flags -->	
+				<control type="grouplist">
+					<description>Media Codec Flagging Images</description>
+					<left>35</left>
+					<top>30</top>
+					<width>540</width>
+					<align>left</align>
+					<itemgap>15</itemgap>
+					<orientation>horizontal</orientation>
+					<include>VideoCodecFlaggingConditions</include>
+					<include>AudioCodecFlaggingConditions</include>
+					<include>AspectCodecFlaggingConditions</include>
+				</control>
+			</control>      
+			
+     
+			<control type="image">
+				<left>15</left>
+				<top>50</top>
+				<width>540</width>
+				<height>303</height>
+				<texture>black-back.png</texture>
+				<bordertexture border="8">ContentPanelvertical.png</bordertexture>
+				<bordersize>8</bordersize>
+				<aspectratio>stretch</aspectratio>
+				<align>right</align>
+				<visible>Skin.Hassetting(videowindowglobal)</visible>
+				<visible>Player.HasVideo</visible>
+				<visible>!Skin.Hassetting(videowindownoborder)</visible>
+				<visible>Control.IsVisible(515)</visible>
+			</control>
+			<control type="videowindow" id="8">
+				<left>30</left>
+				<top>64</top>
+				<width>511</width>
+				<height>275</height>
+				<align>right</align>
+				<visible>Skin.Hassetting(videowindowglobal)</visible>
+				<visible>Control.IsVisible(515)</visible>
+			</control>
+			<control type="label">
+				<description>Title label</description>
+				<left>114</left>
+				<top>282</top>
+				<height>30</height>
+				<width>330</width>
+				<label>$INFO[VideoPlayer.Title]$INFO[VideoPlayer.Year,[COLOR=accent] (,)[/COLOR]]</label>
+				<align>center</align>
+				<aligny>center</aligny>
+				<font>cirrus_20</font>
+				<textcolor>white</textcolor>
+				<shadowcolor>black</shadowcolor>
+				<visible>Skin.HasSetting(videowindowglobal)</visible>
+				<visible>Player.HasVideo</visible>
+				<visible>Control.IsVisible(515)</visible>
+				<visible>!Skin.HasSetting(videonotitle)</visible>
+			</control>
+		</control>
+	</include>
 </includes>
