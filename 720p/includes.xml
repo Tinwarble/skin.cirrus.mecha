@@ -9,7 +9,7 @@
     <include file="ViewsVideoBigposter.xml"/>
     <include file="ViewsVideoFanart.xml"/>
     <include file="ViewsVideoFanartSlide.xml"/>
-    <!-- Added this view666 for new Fanart  -->
+    <!-- Added this view665 for new Fanart  -->
     <include file="ViewsGamesFanart.xml"/>
     <!-- Added this view590 for Advanced Launcher plugin  -->
     <include file="ViewsGamesFanartSquare.xml"/>
@@ -337,7 +337,7 @@
             </control>
         </control>
     </include>	
-
+	
     <include name="ButtonCommonValues">
         <height>30</height>
         <width>250</width>

@@ -1120,11 +1120,11 @@
                 </control>
                 <!-- Buttons -->
                 <control type="grouplist" id="9000">
-                    <left>1240r</left>
+                    <left>0</left>
                     <top>677</top>
-                    <width>1200</width>
-                    <height>40</height>
-                    <itemgap>30</itemgap>
+                    <width>1280</width>
+                    <height>720</height>
+                    <itemgap>2</itemgap>
                     <align>center</align>
                     <aligny>center</aligny>
                     <orientation>horizontal</orientation>

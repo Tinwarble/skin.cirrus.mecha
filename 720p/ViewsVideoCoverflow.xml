@@ -11,15 +11,15 @@
                 <effect type="fade" start="100" end="0" time="300"/>
             </animation>      
             <visible>Control.IsVisible(555)</visible>
-            <control type="image">
-                <!-- bottom bar background -->
+		<!-- bottom bar background -->
+            <!--control type="image">               
                 <left>0</left>
                 <top>155r</top>
                 <width>1280</width>
                 <height>700</height>
                 <aspectratio>stretch</aspectratio>
                 <texture>rightlistbackground.png</texture>
-            </control>
+            </control-->
             <control type="image">
                 <!-- bottom bar background -->
                 <left>0</left>
@@ -69,7 +69,7 @@
             </control>
             <control type="group">
                 <left>280</left>
-                <animation effect="rotatey" center="260" start="-60" end="-60" time="0" condition="true">Conditional</animation>
+                <animation effect="rotatey" center="260" start="-40" end="-40" time="0" condition="true">Conditional</animation>
                 <control type="image">
                     <left>0</left>
                     <top>0</top>
@@ -312,7 +312,7 @@
             </control>
             <control type="group">
                 <left>280</left>
-                <animation effect="rotatey" center="260" start="-60" end="-60" time="0" condition="true">Conditional</animation>
+                <animation effect="rotatey" center="260" start="-40" end="-40" time="0" condition="true">Conditional</animation>
                 <control type="image">
                     <left>0</left>
                     <top>0</top>

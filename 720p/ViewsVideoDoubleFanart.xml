@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
     <!-- ===================================================================================== -->
-    <!-- ================================= FANART2 VIEW ID 720 ================================ -->
+    <!-- ================================= DOUBLE FANART VIEW ID 720 ================================ -->
     <!-- ==================================== Movies only ====================================== -->
     <include name="Double_Fanart">
 		<control type="group">
@@ -375,7 +375,7 @@
                             <bordersize>6</bordersize>
                             <colordiffuse>ff444444</colordiffuse>
                         </control>                       
-					<!-- Watching-Watching Icon -->
+					<!-- Watching-Watched Icon -->
                         <control type="image">                            
                             <left>83</left>
                             <top>198</top>

@@ -344,7 +344,7 @@
 			<top>586</top>
 			<left>-25</left>
 			<width>1400</width>
-			<height>75</height>
+			<height>80</height>
 			<aspectratio>stretch</aspectratio>
 			<texture>special://skin/media/Showcase_mod/showcase_diffuser2.png</texture>
 			<bordersize>6</bordersize>			
@@ -373,9 +373,9 @@
                 <onleft>721</onleft>
                 <onright>721</onright>
 				<onup>2</onup>
-                <ondown>60</ondown>                
+                <ondown>63</ondown>                
                 <viewtype label="41131">wraplist</viewtype>
-                <pagecontrol>60</pagecontrol>
+                <pagecontrol>63</pagecontrol>
                 <scrolltime tween="quadratic" easing="out">300</scrolltime>
                 <focusposition>4</focusposition>
                 <orientation>horizontal</orientation>
@@ -526,20 +526,20 @@
             </control>
 
 		<!-- Scroll Bar -->
-            <control type="scrollbar" id="60">
+            <control type="scrollbar" id="63">
                 <left>-10</left>
                 <top>126</top>
                 <width>1300</width>
                 <height>25</height>
 				<aspectratio>stretch</aspectratio>
-                <texturesliderbackground border="8,0,8,0">ScrollBarV.png</texturesliderbackground>
-                <textureslidernib>ScrollBarV.png</textureslidernib>
-                <textureslidernibfocus>ScrollBarV_bar_focus.png</textureslidernibfocus>
+                <texturesliderbackground border="8,0,8,0">ScrollBarh.png</texturesliderbackground>
+                <textureslidernib>ScrollBarh.png</textureslidernib>
+                <textureslidernibfocus>ScrollBarh_bar_focus.png</textureslidernibfocus>
                 <onup>721</onup>
                 <ondown>508</ondown>
                 <showonepage>false</showonepage>
                 <orientation>horizontal</orientation>
-                <visible allowhiddenfocus="true">Control.IsVisible(721) + Control.HasFocus(60)</visible>
+                <visible allowhiddenfocus="true">Control.IsVisible(721) + Control.HasFocus(63)</visible>
             </control>
         </control>
 		
@@ -556,9 +556,9 @@
 			<visible>Control.IsVisible(721)</visible>                
 			<control type="image"> 
 				<left>0</left>
-				<top>582</top>
+				<top>655</top>
 				<width>1280</width>
-				<height>138</height>
+				<height>65</height>
 				<aspectratio>stretch</aspectratio>
 				<texture background="true">special://skin/media/Showcase_mod/showcase_infobar.png</texture>                    
 			</control> 
