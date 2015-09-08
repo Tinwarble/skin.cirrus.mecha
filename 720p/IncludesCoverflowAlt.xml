@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+    <include name="CoverflowAlt">  
+
+        <!-- ===============NEED TO ADD ANIMATION TO COVERFLOW AT SOME POINT================-->
+		<!-- ===============THIS IS A WIP TO ADD COVERFLOW OPTION TO FANART VIEW===========--->
+		        <!-- ======== ANIMATIONS TO THE righT ============ -->
+		<control type="group">
+		<visible>Skin.HasSetting(UseCoverflow)</visible>
+			<!--control type="group" id="7001">
+				<include>Window_OpenClose_Animation</include>
+				<top>430</top>
+				<visible>Control.IsVisible(508) + Container.OnNext</visible>
+				<animation effect="slide" end="-100,0" time="250" reversible="false">Hidden</animation>
+				<control type="group">
+					<left>80</left>
+					<visible>Container.OnNext</visible>
+					<animation effect="fade" start="100" end="0" time="250" reversible="false">Hidden</animation>
+					<animation effect="rotatey" center="60" start="-30" end="-30" time="0" condition="true">Conditional</animation>
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>200</width>
+						<height>320</height>
+						<texture background="true">$INFO[ListItem(-4).Icon]</texture>
+						<bordertexture border="8">ThumbBorder.png</bordertexture>
+						<bordersize>8</bordersize>
+					</control>
+				</control>
+				<control type="group">
+					<left>180</left>
+					<animation effect="rotatey" center="160" start="-30" end="-30" time="0" condition="true">Conditional</animation>
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>200</width>
+						<height>320</height>
+						<texture background="true">$INFO[ListItem(-3).Icon]</texture>
+						<bordertexture border="8">ThumbBorder.png</bordertexture>
+						<bordersize>8</bordersize>
+					</control>
+				</control>
+				<control type="group">
+					<left>280</left>
+					<animation effect="rotatey" center="260" start="-30" end="-30" time="0" condition="true">Conditional</animation>
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>200</width>
+						<height>320</height>
+						<texture background="true">$INFO[ListItem(-2).Icon]</texture>
+						<bordertexture border="8">ThumbBorder.png</bordertexture>
+						<bordersize>8</bordersize>
+					</control>
+				</control>
+				<control type="group">
+					<left>1000</left>
+					<visible>!Container.OnNext</visible>
+					<animation effect="fade" start="0" end="100" delay="0" time="250" reversible="false">Visible</animation>
+					<animation effect="rotatey" center="1320" start="30" end="30" time="0" condition="true">Conditional</animation>
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>200</width>
+						<height>320</height>
+						<texture background="true">$INFO[ListItem(3).Icon]</texture>
+						<bordertexture border="8">ThumbBorder.png</bordertexture>
+						<bordersize>8</bordersize>
+					</control>
+				</control>
+				<control type="group">
+					<left>900</left>
+					<animation effect="rotatey" center="1220" start="30" end="30" time="0" condition="true">Conditional</animation>
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>200</width>
+						<height>320</height>
+						<texture background="true">$INFO[ListItem(2).Icon]</texture>
+						<bordertexture border="8">ThumbBorder.png</bordertexture>
+						<bordersize>8</bordersize>
+					</control>
+				</control>
+				<control type="group">
+					<left>800</left>
+					<animation effect="rotatey" center="1120" start="30" end="30" time="0" condition="true">Conditional</animation>
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>200</width>
+						<height>320</height>
+						<texture background="true">$INFO[ListItem(1).Icon]</texture>
+						<bordertexture border="8">ThumbBorder.png</bordertexture>
+						<bordersize>8</bordersize>
+					</control>
+				</control>
+				<control type="group">
+					<visible>Container.OnNext</visible>
+					<animation effect="slide" end="-110,0" time="250" reversible="false">Hidden</animation>
+					<control type="group">
+						<left>700</left>
+						<visible>Container.OnNext</visible>
+						<animation effect="rotatey" center="1020" start="0" end="-30" time="250" reversible="false" tween="quadratic" easing="in">Hidden</animation>
+						<animation effect="rotatey" center="1020" start="30" end="30" time="0" condition="true">Conditional</animation>
+						<control type="image">
+							<left>0</left>
+							<top>0</top>
+							<width>200</width>
+							<height>320</height>
+							<texture background="true">$INFO[ListItem(0).Icon]</texture>
+							<bordertexture border="8">ThumbBorder.png</bordertexture>
+							<bordersize>8</bordersize>
+						</control>
+					</control>
+					<control type="group">
+						<left>490</left>
+						<visible>Container.OnNext</visible>
+						<animation effect="rotatey" center="470" start="0" end="-30" time="250" reversible="false" tween="quadratic" easing="out">Hidden</animation>
+						<control type="image">
+							<left>0</left>
+							<top>0</top>
+							<width>200</width>
+							<height>320</height>
+							<texture background="true">$INFO[ListItem(-1).Icon]</texture>
+							<bordertexture border="8">ThumbBorder.png</bordertexture>
+							<bordersize>8</bordersize>
+						</control>
+					</control>
+				</control>
+			</control-->
+
+
+			<!-- ========== animations to the left =================== -->
+			<!--control type="group" id="7002">
+				<include>Window_OpenClose_Animation</include>
+				<top>430</top>
+				<visible>Control.IsVisible(508) + Container.OnPrevious</visible>
+				<animation effect="slide" end="100,0" time="250" reversible="false">Hidden</animation>
+				<control type="group">
+					<left>900</left>
+					<visible>Container.OnPrevious</visible>
+					<animation effect="fade" start="100" end="0" time="250" reversible="false">Hidden</animation>
+					<animation effect="rotatey" center="1220" start="50" end="50" time="0" condition="true">Conditional</animation>
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>150</width>
+						<height>260</height>
+						<texture background="true">$INFO[ListItem(4).Icon]</texture>
+						<bordertexture border="8">ThumbBorder.png</bordertexture>
+						<bordersize>8</bordersize>
+					</control>
+				</control>
+				<control type="group">
+					<left>800</left>
+					<animation effect="rotatey" center="1120" start="40" end="40" time="0" condition="true">Conditional</animation>
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>160</width>
+						<height>270</height>
+						<texture background="true">$INFO[ListItem(3).Icon]</texture>
+						<bordertexture border="8">ThumbBorder.png</bordertexture>
+						<bordersize>8</bordersize>
+					</control>
+				</control>
+				<control type="group">
+					<left>700</left>
+					<animation effect="rotatey" center="1020" start="35" end="35" time="0" condition="true">Conditional</animation>
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>170</width>
+						<height>280</height>
+						<texture background="true">$INFO[ListItem(2).Icon]</texture>
+						<bordertexture border="8">ThumbBorder.png</bordertexture>
+						<bordersize>8</bordersize>
+					</control>
+				</control>
+				<control type="group">
+					<left>-20</left>
+					<visible>!Container.OnPrevious</visible>
+					<animation effect="fade" start="0" end="100" time="250" reversible="false">Visible</animation>
+					<animation effect="rotatey" center="-60" start="-40" end="-40" time="0" condition="true">Conditional</animation>
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>160</width>
+						<height>270</height>
+						<texture background="true">$INFO[ListItem(-3).Icon]</texture>
+						<bordertexture border="8">ThumbBorder.png</bordertexture>
+						<bordersize>8</bordersize>
+					</control>
+				</control>
+				<control type="group">
+					<left>80</left>
+					<animation effect="rotatey" center="60" start="-35" end="-35" time="0" condition="true">Conditional</animation>
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>170</width>
+						<height>280</height>
+						<texture background="true">$INFO[ListItem(-2).Icon]</texture>
+						<bordertexture border="8">ThumbBorder.png</bordertexture>
+						<bordersize>8</bordersize>
+					</control>
+				</control>
+				<control type="group">
+					<left>180</left>
+					<animation effect="rotatey" center="160" start="-30" end="-30" time="0" condition="true">Conditional</animation>
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>180</width>
+						<height>290</height>
+						<texture background="true">$INFO[ListItem(-1).Icon]</texture>
+						<bordertexture border="8">ThumbBorder.png</bordertexture>
+						<bordersize>8</bordersize>
+					</control>
+				</control>
+				<control type="group">
+					<visible>Container.OnPrevious</visible>
+					<animation effect="slide" end="110,0" time="250" reversible="false">Hidden</animation>
+					<control type="group">
+						<left>280</left>
+						<visible>Container.OnPrevious</visible>
+						<animation effect="rotatey" center="260" start="0" end="30" time="250" reversible="false" tween="quadratic" easing="in">Hidden</animation>
+						<animation effect="rotatey" center="260" start="-50" end="-50" time="0" condition="true">Conditional</animation>
+						<control type="image">
+							<left>0</left>
+							<top>0</top>
+							<width>150</width>
+							<height>260</height>
+							<texture background="true">$INFO[ListItem(0).Icon]</texture>
+							<bordertexture border="8">ThumbBorder.png</bordertexture>
+							<bordersize>8</bordersize>
+						</control>
+					</control>
+					<control type="group">
+						<left>490</left>
+						<visible>Container.OnPrevious</visible>
+						<animation effect="rotatey" center="810" start="0" end="30" time="250" reversible="false" tween="quadratic" easing="out">Hidden</animation>
+						<control type="image">
+							<left>0</left>
+							<top>0</top>
+							<width>180</width>
+							<height>290</height>
+							<texture background="true">$INFO[ListItem(1).Icon]</texture>
+							<bordertexture border="8">ThumbBorder.png</bordertexture>
+							<bordersize>8</bordersize>
+						</control>
+					</control>
+				</control>
+			</control-->
+			<!-- ===================NON AMIMATION========================== -->
+			<ontrol type="group" id="7000">
+				<include>Window_OpenClose_Animation</include>
+				<top>425</top>
+				<visible>Control.IsVisible(508) + !Control.IsVisible(7001)  + !Control.IsVisible(7002)</visible>
+				 <control type="group">
+					<left>4</left>
+					<animation effect="rotatey" center="69" start="-50" end="-50" time="0" condition="true">Conditional</animation>
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>130</width>
+						<height>260</height>
+						<texture background="true">$INFO[ListItem(-4).Icon]</texture>
+						<bordertexture border="8">ThumbBorder.png</bordertexture>
+						<bordersize>8</bordersize>
+					</control>
+				</control>
+				<control type="group">
+					<left>137</left>
+					<animation effect="rotatey" center="197" start="-40" end="-40" time="0" condition="true">Conditional</animation>
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>140</width>
+						<height>260</height>
+						<texture background="true">$INFO[ListItem(-3).Icon]</texture>
+						<bordertexture border="8">ThumbBorder.png</bordertexture>
+						<bordersize>8</bordersize>
+					</control>
+				</control>
+				<control type="group">
+					<left>271</left>
+					<animation effect="rotatey" center="346" start="-35" end="-35" time="0" condition="true">Conditional</animation>
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>150</width>
+						<height>260</height>
+						<texture background="true">$INFO[ListItem(-2).Icon]</texture>
+						<bordertexture border="8">ThumbBorder.png</bordertexture>
+						<bordersize>8</bordersize>
+					</control>
+				</control>
+				<control type="group">
+					<left>396</left>
+					<animation effect="rotatey" center="476" start="-30" end="-30" time="0" condition="true">Conditional</animation>
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>160</width>
+						<height>260</height>
+						<texture background="true">$INFO[ListItem(-1).Icon]</texture>
+						<bordertexture border="8">ThumbBorder.png</bordertexture>
+						<bordersize>8</bordersize>
+					</control>
+				</control>
+				<control type="group">
+					<left>1146</left>
+					<animation effect="rotatey" center="1211" start="50" end="50" time="0" condition="true">Conditional</animation>
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>130</width>
+						<height>260</height>
+						<texture background="true">$INFO[ListItem(4).Icon]</texture>
+						<bordertexture border="8">ThumbBorder.png</bordertexture>
+						<bordersize>8</bordersize>
+					</control>
+				</control>
+				<control type="group">
+					<left>1003</left>
+					<animation effect="rotatey" center="1073" start="40" end="40" time="0" condition="true">Conditional</animation>
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>140</width>
+						<height>260</height>
+						<texture background="true">$INFO[ListItem(3).Icon]</texture>
+						<bordertexture border="8">ThumbBorder.png</bordertexture>
+						<bordersize>8</bordersize>
+					</control>
+				</control>
+				<control type="group">
+					<left>860</left>
+					<animation effect="rotatey" center="935" start="35" end="35" time="0" condition="true">Conditional</animation>
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>150</width>
+						<height>260</height>
+						<texture background="true">$INFO[ListItem(2).Icon]</texture>
+						<bordertexture border="8">ThumbBorder.png</bordertexture>
+						<bordersize>8</bordersize>
+					</control>
+				</control>
+				<control type="group">
+					<left>725</left>
+					<animation effect="rotatey" center="805" start="30" end="30" time="0" condition="true">Conditional</animation>
+					<control type="image">
+						<left>0</left>
+						<top>0</top>
+						<width>160</width>
+						<height>260</height>
+						<texture background="true">$INFO[ListItem(1).Icon]</texture>
+						<bordertexture border="8">ThumbBorder.png</bordertexture>
+						<bordersize>8</bordersize>
+					</control>
+				</control-->
+
+				<!-- MAIN MIDDLE ICON -->
+				<control type="group">
+					<animation type="WindowOpen" reversible="false">
+						<effect type="zoom" start="80" end="100" center="640,360" easing="out" tween="back" time="300"/>
+						<effect type="fade" start="0" end="100" time="300"/>
+					</animation>
+					<animation type="WindowClose" reversible="false">
+						<effect type="zoom" start="100" end="80" center="640,360" easing="in" tween="back" time="300"/>
+						<effect type="fade" start="100" end="0" time="300"/>
+					</animation>      
+					<left>535</left>
+					<control type="image">
+						<left>0</left>
+						<top>-10</top>
+						<width>210</width>
+						<height>290</height>
+						<texture background="true">$INFO[ListItem.Icon]</texture>
+						<bordertexture border="8">ThumbBorder.png</bordertexture>
+						<bordersize>8</bordersize>
+						<visible>Control.HasFocus(508) | !Control.HasFocus(508)</visible>
+					</control>            
+					
+				</control>
+			</control>
+
+			 <!-- LIST BIT -->
+			<control type="wraplist" id="998">
+				<visible>Skin.HasSetting(coverflow_view) + Control.IsVisible(508)</visible>
+				<include>Window_OpenClose_Animation</include>
+				<description>Fake list to control coverflow movement</description>
+				<visible>Container.Content(Movies)</visible>
+				<left>490</left>
+				<top>450</top>
+				<width>306</width>
+				<height>440</height>
+				<onleft>57</onleft>
+				<onright>57</onright>
+				<onup>60</onup>
+				
+				<viewtype label="33031">list</viewtype>
+				<pagecontrol>60</pagecontrol>
+				<orientation>horizontal</orientation>
+				<scrolltime>250</scrolltime>
+				<focusedposition>3</focusedposition>
+				<itemlayout height="1" width="1">
+				</itemlayout>
+				<focusedlayout height="440" width="300">
+				</focusedlayout>
+			</control>
+		</control>
+    </include>
+</includes>

@@ -4,28 +4,516 @@
     <!-- ================================= FANART VIEW ID 508 ================================ -->
     <!-- ====================== Movies, TV Shows, Seasons, Episodes only ===================== -->
     <include name="Fanart">
-        <control type="image">
-            <!-- darken the background a bit -->
-            <left>0</left>
-            <top>0</top>
-            <width>1280</width>
-            <height>720</height>
-            <aspectratio>stretch</aspectratio>
-            <texture>black-back3.png</texture>
-            <visible>Skin.HasSetting(VideoLibraryDimFanart) + !Control.IsVisible(55)</visible>
-        </control>
-        <control type="image">
-            <!-- bottom bar background -->
-            <left>0</left>
-            <top>232r</top>
-            <width>1280</width>
-            <height>700</height>
-            <aspectratio>stretch</aspectratio>
-            <texture>rightlistbackground.png</texture>
+		<control type="group">			
+			<visible>Control.IsVisible(508) + !IsEmpty(ListItem.Title)</visible>
+		<!-- METADATA BACKGROUND CONTROL -->
+			<control type="group">
+			<!-- Top Shadow -->
+				<control type="image">				
+					<left>0</left>
+					<top>0</top>
+					<width>1280</width>
+					<height>50</height>
+					<aspectratio>stretch</aspectratio>
+					<texture flipy="true">special://skin/media/Showcase_mod/showcase_diffuser.png</texture>
+				</control>
+			<!-- Bottom Shadow -->
+				<control type="image">				
+					<left>0</left>
+					<top>418</top>
+					<width>1280</width>
+					<height>250</height>
+					<aspectratio>stretch</aspectratio>
+					<texture>special://skin/media/Showcase_mod/showcase_diffuser.png</texture>
+					<colordiffuse>white</colordiffuse>
+				</control>
+			<!-- Meta background -->
+				<control type="image">				
+					<left>0</left>
+					<top>48</top>
+					<width>1280</width>
+					<height>372</height>
+					<aspectratio>stretch</aspectratio>
+					<texture>special://skin/media/Fanart/fanart_meta_bg.png</texture>				
+				</control>
+			</control>
+		<!-- FANART & EXTRA FANART CONTROL -->
+			<control type="group">
+				<animation type="WindowOpen" reversible="false">
+                <effect type="zoom" start="80" end="100" center="640,360" easing="out" tween="back" time="300"/>
+                <effect type="fade" start="0" end="100" time="300"/>
+				</animation>
+				<animation type="WindowClose" reversible="false">
+					<effect type="zoom" start="100" end="80" center="640,360" easing="in" tween="back" time="300"/>
+					<effect type="fade" start="100" end="0" time="300"/>
+				</animation> 				
+				<left>600</left>
+			<!-- Fanart Background -->
+				<control type="image">
+					<left>32</left>
+					<top>96</top>
+					<width>496</width>
+					<height>271</height>
+					<aspectratio>stretch</aspectratio>
+					<texture>black-back.png</texture>
+					<bordertexture>ContentPanelvertical.png</bordertexture>				
+					<visible>!Skin.HasSetting(Smallwindowhidden)</visible>
+					<visible>!Player.HasVideo | !Skin.HasSetting(videowindownoborder) | !Skin.HasSetting(videowindowglobal)</visible>
+					<visible>!IsEmpty(ListItem.Thumb)</visible> 
+				</control>
+			<!-- Fanart -->
+				<control type="image">
+					<left>32</left>
+					<top>96</top>
+					<width>496</width>
+					<height>271</height>
+					<aspectratio>stretch</aspectratio>
+					<fadetime>FanartCrossfadeTime</fadetime>
+					<texture fallback="splashm.png" background="true">$INFO[ListItem.Art(fanart)]</texture>
+					<visible>!Player.HasVideo | !Skin.HasSetting(videowindowglobal)</visible>
+					<visible>!Skin.HasSetting(Smallwindowhidden)</visible>
+				</control>
+			<!-- Extra Fanart -->
+				<control type="multiimage">
+					<left>32</left>
+					<top>96</top>
+					<width>496</width>
+					<height>271</height>
+					<aspectratio>stretch</aspectratio>
+					<fadetime>FanartCrossfadeTime</fadetime>
+					<timeperimage>8000</timeperimage>
+					<imagepath background="true">$INFO[ListItem.Path]\extrathumbs</imagepath>			
+					<visible>!Player.HasVideo | !Skin.HasSetting(videowindowglobal)</visible>
+					<visible>!Skin.HasSetting(Smallwindowhidden)</visible>
+					<visible>!Skin.HasSetting(VideoLibraryMovieExtrathumbs)</visible>
+					<visible>!Container.Content(TVShows) + !Container.Content(Seasons)</visible>
+				</control>
+			<!-- Fanart & Extra Fanart Overlay -->
+				<control type="image">				
+					<left>19</left>
+					<top>83</top>
+					<width>522</width>
+					<height>297</height>
+					<aspectratio>stretch</aspectratio>
+					<texture>special://skin/media/Fanart/fanart_overlay.png</texture>				
+				</control>
+				<!-- Tagline text -->
+                <control type="fadelabel">
+                    <left>39</left>
+                    <top>378</top>
+                    <width>482</width>
+                    <height>20</height>
+                    <font>cirrus_16</font>
+                    <textcolor>white</textcolor>
+                    <scroll>true</scroll>
+                    <align>center</align>
+                    <aligny>center</aligny>
+                    <label>[COLOR=accent]$INFO[ListItem.Tagline][/COLOR]</label>					
+                    <scrollout>false</scrollout>
+                    <pauseatend>2000</pauseatend>
+                    <visible>!ListItem.IsFolder</visible>
+				</control>			
+			</control>
+		<!-- CODEC AND STUDIO LOGO CONTROL -->
+			<control type="group">				
+				<left>1100</left>
+				<top>87</top>				
+			<!-- Codec background -->
+				<control type="image">				
+					<left>71</left>
+					<top>0</top>
+					<width>82</width>
+					<height>297</height>
+					<aspectratio>stretch</aspectratio>
+					<texture>special://skin/media/Landscape/landscape_codec_frame.png</texture>
+					<visible>!ListItem.IsCollection + Container.Content(Movies)</visible>
+				</control>
+			<!-- Codec images -->
+				<control type="grouplist">
+					<description>Media Codec Flagging Images</description>
+					<left>82</left>
+					<top>10</top>
+					<width>82</width>
+					<height>200</height>
+					<align>center</align>
+					<aligny>center</aligny>
+					<itemgap>20</itemgap>
+					<orientation>vertical</orientation>
+					<include>VideoCodecFlaggingConditions</include>
+					<include>AudioCodecFlaggingConditions</include>
+					<include>AspectCodecFlaggingConditions</include>
+				</control>
+			<!-- Studio Flags -->				
+				 <control type="image">
+					<left>72</left>
+					<top>230</top>
+					<width>80</width>
+					<height>60</height>                
+					<aspectratio align="center">keep</aspectratio>
+					<texture border="2">$INFO[listitem.Studio,special://skin/extras/flagging/studios/,.png]</texture>
+					<visible>Container.Content(Movies)</visible>										
+				</control>				
+			</control>
+		<!-- METADATA CONTROL -->
+			<control type="group">					
+				<top>50</top>
+				<!-- Title Text -->
+				<control type="fadelabel">
+					<left>38</left>
+					<top>27</top>
+					<width>1280</width>
+					<height>30</height>
+					<font>cirrus_30</font>
+					<textcolor>white</textcolor>
+					<scroll>true</scroll>
+					<align>left</align>
+					<aligny>center</aligny>
+					<label>$INFO[ListItem.Title]</label>
+					<scrollout>false</scrollout>
+					<pauseatend>2000</pauseatend>
+					<visible>!Skin.HasSetting(Smallwindowhidden)</visible>
+					<visible>Container.Content(Movies) | [Container.Content(TVShows) + IsEmpty(ListItem.Art(clearlogo)] | [Container.Content(Seasons) + IsEmpty(ListItem.Art(tvshow.clearlogo)]</visible>
+				</control>
+			<!-- Meta Separator - Title -->
+				<control type="image">				
+					<left>38</left>
+					<top>62</top>
+					<width>570</width>
+					<height>1</height>
+					<aspectratio>stretch</aspectratio>
+					<texture>special://skin/media/hseparator.png</texture>
+					<visible>Container.Content(Movies) | [Container.Content(TVShows) + IsEmpty(ListItem.Art(clearlogo)] | [Container.Content(Seasons) + IsEmpty(ListItem.Art(tvshow.clearlogo)]</visible>
+				</control>			
+			<!--Genre Text -->
+				<control type="label">
+					<left>38</left>
+					<top>68</top>
+					<width>570</width>
+					<height>25</height>
+					<font>cirrus_22</font>
+					<textcolor>white</textcolor>
+					<scroll>false</scroll>
+					<align>left</align>
+					<aligny>center</aligny>
+					<label>$VAR[ListItemGenre,[COLOR=accent][/COLOR]]</label>
+					<scrollout>false</scrollout>
+					<pauseatend>2000</pauseatend>
+					<visible>!Skin.HasSetting(Smallwindowhidden)</visible>
+					<visible>Container.Content(Movies) | [Container.Content(TVShows) + IsEmpty(ListItem.Art(clearlogo)] | [Container.Content(Seasons) + IsEmpty(ListItem.Art(tvshow.clearlogo)]</visible>
+				</control>
+			<!-- Movie Year & Duration Text -->
+				<control type="fadelabel">
+					<left>38</left>
+					<top>98</top>
+					<width>470</width>
+					<height>25</height>
+					<font>cirrus_22</font>
+					<textcolor>white</textcolor>
+					<scroll>true</scroll>
+					<align>left</align>
+					<aligny>center</aligny>
+					<label>[COLOR=accent]$INFO[ListItem.Year][/COLOR]    $INFO[ListItem.Duration] $LOCALIZE[12391]</label>
+					<scrollout>false</scrollout>
+					<pauseatend>2000</pauseatend>
+					<visible>!ListItem.IsFolder</visible>
+				</control>
+			<!-- Dot Separator - Year/Duration -->
+				<control type="image">
+					<description>Dot</description>
+					<left>89</left>
+					<top>98</top>
+					<width>8</width>
+					<height>25</height>
+					<texture>Dot.png</texture>
+					<aspectratio align="center" aligny="center">keep</aspectratio>
+					<visible>!ListItem.IsCollection</visible>
+					<visible>!Content.Container(Movies) + !Container.Content(TVShows) + !Container.Content(Seasons)</visible>
+				</control>
+			<!-- Meta Separator - Plot -->
+				<control type="image">				
+					<left>38</left>
+					<top>128</top>
+					<width>570</width>
+					<height>1</height>
+					<aspectratio>stretch</aspectratio>
+					<texture>special://skin/media/hseparator.png</texture>				
+				</control>			
+			<!-- Plot text -->
+				<control type="textbox">
+					<description>Movie Plot</description>
+					<left>38</left>
+					<top>134</top>
+					<width>570</width>
+					<height>150</height>
+					<font>cirrus_20</font>
+					<align>justify</align>
+					<textcolor>white</textcolor>
+					<label>$VAR[ListItemPlot]</label>
+					<autoscroll time="2000" delay="3000" repeat="5000">Skin.HasSetting(AutoScroll)</autoscroll>
+					<visible>!Skin.HasSetting(plotoutline)</visible>
+				</control>			
+			<!-- Plotoutline Text -->
+				<control type="textbox">
+					<description>Movie PlotOutline</description>
+					<left>38</left>
+					<top>134</top>
+					<width>570</width>
+					<height>150</height>
+					<font>cirrus_20</font>
+					<align>justify</align>
+					<textcolor>white</textcolor>
+					<label>$VAR[ListItemPlotOutline]</label>
+					<autoscroll time="2000" delay="3000" repeat="5000">Skin.HasSetting(AutoScroll)</autoscroll>
+					<visible>Skin.HasSetting(plotoutline)</visible>
+				</control>
+			</control>
+		<!-- RATING CONTROL -->
+			<control type="group">
+				<top>250</top>
+			<!-- MPAA Rating - Old -->
+				<visible>Control.IsVisible(508) + !IsEmpty(ListItem.Title)</visible>
+				<control type="grouplist">
+					<description>MPAA Rating Flagging Images</description>
+					<left>388</left>
+					<top>89</top>
+					<width>249</width>
+					<align>left</align>
+					<itemgap>0</itemgap>
+					<orientation>horizontal</orientation>
+					<include>VideoMPAAFlaggingConditions</include>
+					<visible>!Skin.HasSetting(noMPAAStudioFlags)</visible>
+					<visible>!Skin.HasSetting(NewMPAAFlags)</visible>
+					<visible>!ListItem.IsFolder</visible>
+				</control>
+			<!-- MPAA Rating - New -->
+				<control type="grouplist">
+					<description>MPAA NEW Rating Flagging Images</description>
+					<left>170</left>
+					<top>147</top>
+					<width>249</width>
+					<align>left</align>
+					<itemgap>0</itemgap>
+					<orientation>horizontal</orientation>
+					<include>NewVideoMPAAFlaggingConditions</include>
+					<visible>!Skin.HasSetting(noMPAAStudioFlags)</visible>
+					<visible>Skin.HasSetting(NewMPAAFlags) + Skin.HasSetting(imdbnrfanart)</visible>
+					<visible>!ListItem.IsFolder</visible>
+				</control>
+			<!-- IMDB Rating Text -->
+				<control type="label">
+					<description>Rating value</description>
+					<left>122</left>
+					<top>99</top>
+					<width>183</width>
+					<height>25</height>
+					<textcolor>white</textcolor>
+					<font>cirrus_30</font>
+					<align>left</align>
+					<label>$INFO[Listitem.Rating]</label>
+					<colordiffuse>black</colordiffuse>
+					<visible>Skin.HasSetting(imdbnrfanart)</visible>
+					<visible>!IsEmpty(ListItem.Title)</visible> 
+				</control>
+			<!-- IMDB Logo -->
+				<control type="image">
+					<left>38</left>
+					<top>99</top>
+					<width>84</width>
+					<height>31</height>					
+					<aspectratio align="center">keep</aspectratio>
+					<texture>imdb-logo.png</texture>
+					<visible>Skin.HasSetting(imdbnrfanart)</visible>
+					<visible>!IsEmpty(Listitem.Rating)</visible>
+				</control>
+			</control>
+		<!-- MOVIE SETS ONLY -->
+			<control type="group">		
+				<top>50</top>
+			<!-- Collection Duration Text -->
+                <control type="fadelabel">
+                    <left>38</left>
+                    <top>98</top>
+                    <width>260</width>
+                    <height>25</height>
+                    <font>cirrus_20</font>
+                    <textcolor>white</textcolor>
+                    <scroll>true</scroll>
+                    <align>left</align>
+                    <aligny>center</aligny>
+                    <label>[COLOR=accent]Total Runtime:[/COLOR] $VAR[ListItemRuntime]</label>
+                    <scrollout>false</scrollout>
+                    <pauseatend>2000</pauseatend>
+                    <visible>ListItem.IsCollection</visible>
+                </control>
+			<!-- Collection Count Text -->
+                <control type="label">
+                    <left>327</left>
+                    <top>98</top>
+                    <width>280</width>
+                    <height>25</height>
+                    <font>cirrus_20</font>
+                    <textcolor>white</textcolor>
+                    <scroll>true</scroll>
+                    <align>right</align>
+                    <aligny>center</aligny>
+					<autoscroll time="6000" delay="5000" repeat="5000"></autoscroll>
+					<orientation>horizontal</orientation>
+                    <label>[COLOR=accent]Movies In Collection:[/COLOR] $VAR[ListItemCount]</label>
+                    <visible>ListItem.IsCollection</visible>
+				</control>
+			</control>
+		<!-- TV SHOWS & SEASONS CONTROL -->
+			<control type="group">
+				<top>50</top>
+				<visible>Container.Content(TVShows) | Container.Content(Seasons)</visible>
+			<!-- Clearlogo - TV Shows -->
+				<control type="largeimage"> 
+                    <left>38</left> 
+                    <top>27</top> 
+                    <width>225</width> 
+                    <height>87</height> 
+                    <texture background="true">$INFO[ListItem.Art(clearlogo)]</texture>
+                    <fadetime>IconCrossfadeTime</fadetime>
+                    <aspectratio scalediffuse="false" aligny="center" align="left">keep</aspectratio> 
+                </control>
+			<!-- Clearlogo - Seasons -->
+				<control type="largeimage"> 
+                    <left>38</left> 
+                    <top>27</top> 
+                    <width>225</width> 
+                    <height>87</height> 
+                    <texture background="true">$INFO[ListItem.Art(tvshow.clearlogo)]</texture>
+                    <fadetime>IconCrossfadeTime</fadetime>
+                    <aspectratio scalediffuse="false" aligny="center" align="left">keep</aspectratio> 
+                </control>
+			<!-- TV Shows First Aired - No Clearlogo -->
+				<control type="fadelabel">
+                    <left>38</left>
+                    <top>98</top>
+                    <width>260</width>
+                    <height>25</height>
+                    <font>cirrus_22</font>
+                    <textcolor>white</textcolor>
+                    <scroll>true</scroll>
+                    <align>left</align>
+                    <aligny>center</aligny>
+                    <label>[COLOR=accent]$LOCALIZE[20416]:[/COLOR] $INFO[ListItem.Premiered]</label>
+                    <scrollout>false</scrollout>
+                    <pauseatend>2000</pauseatend>
+                    <visible>Container.Content(TVShows) + IsEmpty(ListItem.Art(clearlogo))</visible> 
+                </control>
+			<!-- TV Shows First Aired - Has Clearlogo -->
+				<control type="fadelabel">
+                    <left>285</left>
+                    <top>68</top>
+                    <width>320</width>
+                    <height>25</height>
+                    <font>cirrus_22</font>
+                    <textcolor>white</textcolor>
+                    <scroll>true</scroll>
+                    <align>right</align>
+                    <aligny>center</aligny>
+                    <label>[COLOR=accent]$LOCALIZE[20416]:[/COLOR] $INFO[ListItem.Premiered]</label>
+                    <scrollout>false</scrollout>
+                    <pauseatend>2000</pauseatend>
+                    <visible>Container.Content(TVShows) + !IsEmpty(ListItem.Art(clearlogo))</visible> 
+                </control>
+			<!-- Seasons Episodes -->
+				 <control type="label">
+                    <description>Episodes</description>
+                    <left>285</left>
+                    <top>98</top>
+                    <width>320</width>
+                    <height>25</height>
+                    <label fallback="416">[COLOR=accent]$LOCALIZE[20360]: [/COLOR]$INFO[listitem.episode] [COLOR=grey] ($INFO[ListItem.Property(WatchedEpisodes),, $LOCALIZE[16102]] - $INFO[ListItem.Property(UnWatchedEpisodes), , $LOCALIZE[16101]])[/COLOR]</label>
+                    <align>right</align>
+					<aligny>center</aligny>
+                    <font>cirrus_22</font>
+                    <scroll>true</scroll>
+                    <visible>Container.Content(Seasons)</visible>					
+                </control>
+			<!-- TV Shows Nexted Aired -->
+				<control type="label">
+                    <description>Nextaired</description>
+                    <left>285</left>
+                    <top>98</top>
+                    <width>320</width>
+                    <height>25</height>
+                    <label>$VAR[NextAired]</label>
+                    <align>right</align>
+                    <aligny>center</aligny>
+                    <font>cirrus_22</font>
+                    <scroll>true</scroll>
+                    <visible>Container.Content(TVShows)</visible>
+                </control>
+			<!--Season Genre Text -->
+				<control type="label">
+					<left>38</left>
+					<top>305</top>
+					<width>570</width>
+					<height>25</height>
+					<font>cirrus_22</font>
+					<textcolor>white</textcolor>
+					<scroll>false</scroll>
+					<align>left</align>
+					<aligny>center</aligny>
+					<label>$VAR[ListItemGenre,[COLOR=accent][/COLOR]]</label>
+					<scrollout>false</scrollout>
+					<pauseatend>2000</pauseatend>
+					<visible>!Skin.HasSetting(Smallwindowhidden)</visible>
+					<visible>Container.Content(Seasons)</visible>
+				</control>
+			<!-- Season Text -->
+				<control type="fadelabel">
+					<left>283</left>
+					<top>68</top>
+					<width>260</width>
+					<height>30</height>
+					<font>cirrus_30</font>
+					<textcolor>white</textcolor>
+					<scroll>true</scroll>
+					<align>left</align>
+					<aligny>center</aligny>
+					<label>$INFO[ListItem.Title]</label>
+					<scrollout>false</scrollout>
+					<pauseatend>2000</pauseatend>
+					<visible>!Skin.HasSetting(Smallwindowhidden)</visible>
+					<visible>Container.Content(Seasons) + !IsEmpty(ListItem.Art(tvshow.clearlogo)</visible>
+				</control>
+			<!-- TV Show Studio background -->
+				<control type="image">				
+					<left>1171</left>
+					<top>142</top>
+					<width>82</width>
+					<height>82</height>
+					<aspectratio>stretch</aspectratio>
+					<texture>special://skin/media/Landscape/landscape_studio_frame.png</texture>		
+				</control>
+				<control type="image">
+					<left>1172</left>
+					<top>153</top>
+					<width>80</width>
+					<height>60</height>                
+					<aspectratio align="center">keep</aspectratio>
+					<texture border="2">$INFO[listitem.Studio,special://skin/extras/flagging/studios/,.png]</texture>
+				</control>				
+			</control>
+		</control>		
+			
+	<!-- Coverart Floor -->
+		<control type="image">				
+			<left>0</left>
+			<top>640</top>
+			<width>1280</width>
+			<height>80</height>
+			<aspectratio>stretch</aspectratio>
+			<texture>special://skin/media/Showcase_mod/showcase_diffuser2.png</texture>
+			<visible>Control.IsVisible(508)</visible>
+		</control>	
+
+        <control type="group">		
             <visible>Control.IsVisible(508)</visible>
-        </control>
-        <control type="group">
-            <visible>Control.IsVisible(508)</visible>
+			<!--visible>!Skin.HasSetting(UseCoverflow)</visible-->
             <animation type="WindowOpen" reversible="false">
                 <effect type="zoom" start="80" end="100" center="640,360" easing="out" tween="back" time="300"/>
                 <effect type="fade" start="0" end="100" time="300"/>
@@ -34,36 +522,45 @@
                 <effect type="zoom" start="100" end="80" center="640,360" easing="in" tween="back" time="300"/>
                 <effect type="fade" start="100" end="0" time="300"/>
             </animation> 
-            <!-- <include>VisibleFadeEffect</include> -->
+        
             <left>0</left>
-            <top>510</top>
+            <top>439</top>
             <control type="fixedlist" id="508">
-                <visible>Container.Content(Movies) | Window.IsVisible(VideoFiles) | Container.Content(TVShows) | Container.Content(Seasons) | Container.Content(Episodes)</visible>
-                <left>-20</left>
+                <visible>Container.Content(Movies) | Window.IsVisible(VideoFiles) | Container.Content(TVShows) | Container.Content(Seasons) | !Container.Content(Episodes)</visible>
+                <left>-80</left>
                 <top>-10</top>
-                <width>1600</width>
-                <height>250</height>
+                <width>1440</width>
+                <height>300</height>
                 <onleft>508</onleft>
                 <onright>508</onright>
                 <onup>60</onup>
-                <!-- ,1 VideoWindow ,0 Fullscreen -->
-                <ondown condition="Container.Content(Movies) | Container.Content(Episodes)">ActivateWindow(1121)</ondown>
+            
+                
                 <viewtype label="20445">fixedlist</viewtype>
                 <pagecontrol>60</pagecontrol>
                 <scrolltime tween="quadratic" easing="out">300</scrolltime>
-                <focusposition>5</focusposition>
+                <focusposition>4</focusposition>
                 <orientation>horizontal</orientation>
                 <preloaditems>2</preloaditems>
-                <!-- <movement>3</movement> -->
-                <!-- ITEM LAYOUT FOR MOVIES,TVSHOWS,SEASONS -->
-                <itemlayout condition="Container.Content(Movies) | Container.Content(Seasons) | Container.Content(TVShows)" height="200" width="120">
+          
+                <itemlayout condition="Container.Content(Movies) | Container.Content(Seasons) | Container.Content(TVShows)" height="310" width="160">
                     <control type="image">
                         <left>2</left>
                         <top>20</top>
-                        <width>120</width>
-                        <height>175</height>
+                        <width>155</width>
+                        <height>220</height>
                         <aspectratio>stretch</aspectratio>
                         <texture background="true">$INFO[ListItem.Icon]</texture>
+                        <bordertexture border="6">ContentPanelvertical.png</bordertexture>
+                        <bordersize>6</bordersize>
+                    </control>
+					<control type="image">
+                        <left>2</left>
+                        <top>238</top>
+                        <width>155</width>
+                        <height>220</height>
+                        <aspectratio>stretch</aspectratio>
+                        <texture diffuse="special://skin/media/diffuser2.png" flipy="true">$INFO[ListItem.Icon]</texture>
                         <bordertexture border="6">ContentPanelvertical.png</bordertexture>
                         <bordersize>6</bordersize>
                     </control>
@@ -77,18 +574,18 @@
                         <visible>Player.HasVideo | Skin.HasSetting(originalwatched)</visible>
                     </control>
                 </itemlayout>
-                <focusedlayout condition="Container.Content(Movies) | Container.Content(Seasons) | Container.Content(TVShows)" height="310" width="120">
+                <focusedlayout condition="Container.Content(Movies) | Container.Content(Seasons) | Container.Content(TVShows)" height="310" width="160">
                     <control type="group">
                         <animation type="Focus" reversible="false">
-                            <effect type="zoom" center="55,116" start="100" end="130" time="300" easing="out" tween="cubic" reversible="false"/>
+                            <effect type="zoom" center="80,118" start="100" end="135" time="300" easing="out" tween="cubic" reversible="false"/>
                         </animation>
                         <left>0</left>
                         <top>0</top>
                         <control type="image">
                             <left>2</left>
-                            <top>20</top>
-                            <width>120</width>
-                            <height>175</height>
+                            <top>25</top>
+                            <width>155</width>
+                            <height>220</height>
                             <aspectratio>stretch</aspectratio>
                             <texture>black-back.png</texture>
                             <bordertexture>ContentPanelvertical.png</bordertexture>
@@ -97,12 +594,23 @@
                         <control type="image">
                             <left>2</left>
                             <top>20</top>
-                            <width>120</width>
-                            <height>175</height>
+                            <width>155</width>
+                            <height>220</height>
                             <aspectratio>stretch</aspectratio>
                             <texture background="true">$INFO[ListItem.Icon]</texture>
+							<bordertexture border="6">ContentPanelvertical.png</bordertexture>
                             <bordersize>6</bordersize>
                         </control>
+						<control type="image">
+							<left>2</left>
+							<top>238</top>
+							<width>155</width>
+							<height>220</height>
+							<aspectratio>stretch</aspectratio>
+							<texture diffuse="special://skin/media/diffuser2.png" flipy="true">$INFO[ListItem.Icon]</texture>
+							<bordertexture border="6">ContentPanelvertical.png</bordertexture>
+							<bordersize>6</bordersize>
+						</control>
                         <control type="image">
                             <left>75</left>
                             <top>145</top>
@@ -113,86 +621,24 @@
                             <visible>Player.HasVideo | Skin.HasSetting(originalwatched)</visible>
                         </control>
                     </control>
-                </focusedlayout>
-                <!-- ITEM LAYOUT FOR EPISODES (thumbs rather than posters) -->
-                <itemlayout condition="Container.Content(Episodes)" height="112" width="200">
-                    <control type="group">
-                        <left>-440</left>
-                        <top>30</top>
-                        <control type="image">
-                            <left>0</left>
-                            <top>15</top>
-                            <width>200</width>
-                            <height>112</height>
-                            <aspectratio>stretch</aspectratio>
-                            <texture background="true">$INFO[ListItem.Icon]</texture>
-                            <bordertexture border="6">ContentPanelvertical.png</bordertexture>
-                            <bordersize>6</bordersize>
-                        </control>
-                    </control>
-                    <control type="image">
-                        <left>-280</left>
-                        <top>110</top>
-                        <width>35</width>
-                        <height>35</height>
-                        <aspectratio>keep</aspectratio>
-                        <texture>$VAR[overlayIcon]</texture>
-                        <visible>Player.HasVideo | Skin.HasSetting(originalwatched)</visible>
-                    </control>
-                </itemlayout>
-                <focusedlayout condition="Container.Content(Episodes)" height="112" width="200">
-                    <control type="group">
-                        <animation type="Focus" reversible="false">
-                            <effect type="zoom" center="-345,100" start="100" end="170" time="300" easing="out" tween="cubic" reversible="false"/>
-                        </animation>
-                        <left>-440</left>
-                        <top>30</top>
-                        <control type="image">
-                            <left>0</left>
-                            <top>15</top>
-                            <width>200</width>
-                            <height>112</height>
-                            <aspectratio>stretch</aspectratio>
-                            <texture>black-back.png</texture>
-                            <bordertexture border="6">ContentPanelvertical.png</bordertexture>
-                            <bordersize>6</bordersize>
-                        </control>
-                        <control type="image">
-                            <left>0</left>
-                            <top>15</top>
-                            <width>200</width>
-                            <height>112</height>
-                            <aspectratio>stretch</aspectratio>
-                            <texture background="true">$INFO[ListItem.Icon]</texture>
-                            <bordersize>6</bordersize>
-                        </control>
-                        <control type="image">
-                            <left>170</left>
-                            <top>95</top>
-                            <width>20</width>
-                            <height>20</height>
-                            <aspectratio>keep</aspectratio>
-                            <texture>$VAR[overlayIcon]</texture>
-                            <visible>Player.HasVideo | Skin.HasSetting(originalwatched)</visible>
-                        </control>
-                    </control>
-                </focusedlayout>
-            </control>
-            <control type="scrollbar" id="60">
-                <left>-10</left>
-                <top>-20</top>
-                <width>1300</width>
-                <height>35</height>
-                <texturesliderbackground border="14,0,14,0">ScrollBarV.png</texturesliderbackground>
-                <textureslidernib>ScrollBarV.png</textureslidernib>
-                <textureslidernibfocus>ScrollBarV_bar_focus.png</textureslidernibfocus>
-                <onup>2</onup>
-                <ondown>508</ondown>
-                <showonepage>false</showonepage>
-                <orientation>horizontal</orientation>
-                <visible allowhiddenfocus="true">Control.IsVisible(508) + Control.HasFocus(60)</visible>
-            </control>
+                </focusedlayout> 
+            </control>           
         </control>
+	<!-- SCROLLBAR CONTROL -->	
+		<control type="scrollbar" id="60">
+			<left>0</left>
+			<top>398</top>
+			<width>1280</width>
+			<height>35</height>
+			<texturesliderbackground border="14,-10,14,-10">ScrollBarh.png</texturesliderbackground>
+			<textureslidernib>ScrollBarh.png</textureslidernib>
+			<textureslidernibfocus>ScrollBarh_bar_focus.png</textureslidernibfocus>
+			<onup>2</onup>
+			<ondown>508</ondown>
+			<showonepage>false</showonepage>
+			<orientation>horizontal</orientation>
+			<visible allowhiddenfocus="true">Control.IsVisible(508) + Control.HasFocus(60)</visible>
+		</control>
         <!-- WHEN INFO IS NOT HIDDEN MOVIES -->
         <control type="group">
             <animation type="WindowOpen" reversible="false">
@@ -206,49 +652,20 @@
             <left>0</left>
             <top>100</top>
             <visible>Control.IsVisible(508) + !Window.IsVisible(VideoFiles) + Container.Content(Movies) + !Container.Content(TVShows) + !Container.Content(Seasons) + !Container.Content(Episodes)</visible>
-            <control type="image">
+            <!--control type="image">
                 <left>-100</left>
                 <top>-10</top>
                 <width>1480</width>
                 <height>400</height>
                 <texture>videoinfoback.png</texture>
                 <aspectratio>stretch</aspectratio>
-            </control>
+            </control-->
             <control type="group">
                 <left>80</left>
                 <top>20</top>
                 <visible>Control.IsVisible(508) + Container.Content(Movies)</visible>
-                <control type="fadelabel">
-                    <left>-60</left>
-                    <top>-20</top>
-                    <width>1280</width>
-                    <height>30</height>
-                    <font>cirrus_30</font>
-                    <textcolor>white</textcolor>
-                    <scroll>true</scroll>
-                    <align>left</align>
-                    <aligny>center</aligny>
-                    <label>$INFO[ListItem.Title]</label>
-                    <scrollout>false</scrollout>
-                    <pauseatend>2000</pauseatend>
-                    <visible>!Skin.HasSetting(Smallwindowhidden)</visible>
-                </control>
-                <control type="label">
-                    <left>-60</left>
-                    <top>50</top>
-                    <width>600</width>
-                    <height>30</height>
-                    <font>cirrus_24</font>
-                    <textcolor>white</textcolor>
-                    <scroll>false</scroll>
-                    <align>left</align>
-                    <aligny>center</aligny>
-                    <label>$INFO[ListItem.Genre,[COLOR=accent]$LOCALIZE[515]:[/COLOR] ]</label>
-                    <scrollout>false</scrollout>
-                    <pauseatend>2000</pauseatend>
-                    <visible>!Skin.HasSetting(Smallwindowhidden)</visible>
-                </control>
-                <control type="label">
+                
+                <!--control type="label">
                     <left>-60</left>
                     <top>50</top>
                     <width>800</width>
@@ -262,24 +679,9 @@
                     <scrollout>false</scrollout>
                     <pauseatend>2000</pauseatend>
                     <visible>Skin.HasSetting(Smallwindowhidden)</visible>
-                </control>
-                <control type="fadelabel">
-                    <left>-60</left>
-                    <top>90</top>
-                    <width>470</width>
-                    <height>30</height>
-                    <font>cirrus_24</font>
-                    <textcolor>white</textcolor>
-                    <scroll>true</scroll>
-                    <align>left</align>
-                    <aligny>center</aligny>
-                    <label>[COLOR=accent]$INFO[ListItem.Year][/COLOR] $INFO[ListItem.Duration] $LOCALIZE[12391]</label>
-                    <scrollout>false</scrollout>
-                    <pauseatend>2000</pauseatend>
-                    <visible>!ListItem.IsFolder</visible>
-                </control>
-                <control type="image">
-                    <!-- Top250IMDB Mod 1.2 -->
+                </control-->
+            <!-- Top250IMDB Mod 1.2 -->   
+                <!--control type="image">                   
                     <left>220</left>
                     <top>87</top>
                     <width>88</width>
@@ -289,9 +691,9 @@
                     <texture>IMDBFlag.png</texture>
                     <visible>!IsEmpty(ListItem.Top250)</visible>
                     <colordiffuse>accent</colordiffuse>
-                </control>
-                <control type="label">
-                    <!-- Top250IMDB Mod 1.2 -->
+                </control-->
+			<!-- Top250IMDB Mod 1.2 -->	
+                <!--control type="label">                    
                     <description>top250</description>
                     <left>80</left>
                     <top>86</top>
@@ -302,8 +704,8 @@
                     <aligny>center</aligny>
                     <font>cirrus_38_Bold</font>
                     <textcolor>white</textcolor>
-                </control>
-                <control type="label">
+                </control-->
+                <!--control type="label">
                     <description>Trailer Label while movie is playing</description>
                     <left>45</left>
                     <top>90</top>
@@ -316,77 +718,12 @@
                     <textcolor>accent</textcolor>
                     <visible>!IsEmpty(ListItem.Trailer) + Skin.HasSetting(trailerflag) | Player.HasVideo</visible>
                     <visible>!ListItem.IsFolder</visible>
-                </control>
-                <control type="textbox">
-                    <!-- Plotoutline Mod -->
-                    <description>Movie Plot</description>
-                    <left>-60</left>
-                    <top>130</top>
-                    <width>600</width>
-                    <height>122</height>
-                    <font>cirrus_22</font>
-                    <align>justify</align>
-                    <textcolor>white</textcolor>
-                    <label>$INFO[ListItem.Plot]</label>
-                    <autoscroll time="2000" delay="3000" repeat="5000">Skin.HasSetting(AutoScroll)</autoscroll>
-                    <visible>!Skin.HasSetting(plotoutline)</visible>
-                </control>
-                <control type="textbox">
-                    <description>Movie PlotOutline</description>
-                    <left>-60</left>
-                    <top>130</top>
-                    <width>600</width>
-                    <height>122</height>
-                    <font>cirrus_22</font>
-                    <align>justify</align>
-                    <textcolor>white</textcolor>
-                    <label>$INFO[ListItem.PlotOutline]</label>
-                    <autoscroll time="2000" delay="3000" repeat="5000">Skin.HasSetting(AutoScroll)</autoscroll>
-                    <visible>Skin.HasSetting(plotoutline)</visible>
-                </control>
+                </control-->
+                
             </control>
             <control type="group">
                 <left>-60</left>
-                <control type="image">
-                    <left>700</left>
-                    <top>40</top>
-                    <width>540</width>
-                    <height>303</height>
-                    <aspectratio>stretch</aspectratio>
-                    <texture>black-back.png</texture>
-                    <bordertexture border="8">ContentPanelvertical.png</bordertexture>
-                    <bordersize>8</bordersize>
-                    <visible>!Skin.HasSetting(Smallwindowhidden)</visible>
-                    <visible>!Player.HasVideo | !Skin.HasSetting(videowindownoborder) | !Skin.HasSetting(videowindowglobal)</visible>
-                    <visible>!IsEmpty(ListItem.Thumb)</visible> 
-                </control>
-                <control type="image">
-                    <left>700</left>
-                    <top>40</top>
-                    <width>540</width>
-                    <height>303</height>
-                    <aspectratio>stretch</aspectratio>
-                    <fadetime>FanartCrossfadeTime</fadetime>
-                    <texture fallback="splashm.png" background="true">$INFO[ListItem.Art(fanart)]</texture>
-                    <bordersize>8</bordersize>
-                    <visible>!Player.HasVideo | !Skin.HasSetting(videowindowglobal)</visible>
-                    <visible>!Skin.HasSetting(Smallwindowhidden)</visible>
-                </control>
-                <control type="multiimage">
-                    <left>708</left>
-                    <top>48</top>
-                    <width>524</width>
-                    <height>287</height>
-                    <aspectratio>stretch</aspectratio>
-                    <fadetime>FanartCrossfadeTime</fadetime>
-                    <timeperimage>3000</timeperimage>
-                    <imagepath background="true">$INFO[ListItem.Path]\extrathumbs</imagepath>
-                    <bordersize>8</bordersize>
-                    <visible>!Player.HasVideo | !Skin.HasSetting(videowindowglobal)</visible>
-                    <visible>!Skin.HasSetting(Smallwindowhidden)</visible>
-                    <visible>!Skin.HasSetting(VideoLibraryMovieExtrathumbs)</visible>
-                </control>
-                <control type="videowindow" id="8">
+                <!--control type="videowindow" id="8">
                     <left>714</left>
                     <top>56</top>
                     <width>513</width>
@@ -394,8 +731,8 @@
                     <align>right</align>
                     <visible>Skin.Hassetting(videowindowglobal)</visible>
                     <visible>Control.IsVisible(508)</visible>
-                </control> 
-                <control type="label">
+                </control--> 
+                <!--control type="label">
                     <description>Title label</description>
                     <left>810</left>
                     <top>275</top>
@@ -410,8 +747,8 @@
                     <visible>Player.HasVideo</visible>
                     <visible>Control.IsVisible(508)</visible>
                     <visible>!Skin.HasSetting(videonotitle)</visible>
-                </control>
-                <control type="image">
+                </control-->
+                <!--control type="image">
                     <left>1142</left>
                     <top>43</top>
                     <width>91</width>
@@ -422,8 +759,8 @@
                     <visible>!Player.HasVideo | !Skin.HasSetting(videowindowglobal)</visible>
                     <visible>!Skin.HasSetting(Smallwindowhidden)</visible>
                     <visible>!Skin.HasSetting(originalwatched)</visible>
-                </control>
-                <control type="image">
+                </control-->
+                <!--control type="image">
                     <left>708</left>
                     <top>43</top>
                     <width>91</width>
@@ -434,49 +771,10 @@
                     <visible>!IsEmpty(ListItem.Trailer) + !Skin.HasSetting(trailerflag)</visible>
                     <visible>!Player.HasVideo | !Skin.HasSetting(videowindowglobal)</visible>
                     <visible>!Skin.HasSetting(Smallwindowhidden)</visible>
-                </control>
-                <!-- Changes Ending -->
-                <control type="grouplist">
-                    <description>Media Codec Flagging Images</description>
-                    <left>1250</left>
-                    <top>40</top>
-                    <width>100</width>
-                    <height>300</height>
-                    <align>center</align>
-                    <itemgap>30</itemgap>
-                    <orientation>vertical</orientation>
-                    <include>VideoCodecFlaggingConditions</include>
-                    <include>AudioCodecFlaggingConditions</include>
-                    <include>AspectCodecFlaggingConditions</include>
-                </control>
+                </control--> 
             </control>
-            <control type="grouplist">
-                <description>MPAA Rating Flagging Images</description>
-                <left>370</left>
-                <top>315</top>
-                <width>249</width>
-                <align>left</align>
-                <itemgap>0</itemgap>
-                <orientation>horizontal</orientation>
-                <include>VideoMPAAFlaggingConditions</include>
-                <visible>!Skin.HasSetting(noMPAAStudioFlags)</visible>
-                <visible>!Skin.HasSetting(NewMPAAFlags)</visible>
-                <visible>!ListItem.IsFolder</visible>
-            </control>
-            <control type="grouplist">
-                <description>MPAA NEW Rating Flagging Images</description>
-                <left>170</left>
-                <top>347</top>
-                <width>249</width>
-                <align>left</align>
-                <itemgap>0</itemgap>
-                <orientation>horizontal</orientation>
-                <include>NewVideoMPAAFlaggingConditions</include>
-                <visible>!Skin.HasSetting(noMPAAStudioFlags)</visible>
-                <visible>Skin.HasSetting(NewMPAAFlags) + Skin.HasSetting(imdbnrfanart)</visible>
-                <visible>!ListItem.IsFolder</visible>
-            </control>
-            <control type="grouplist">
+            
+            <!--control type="grouplist">
                 <description>MPAA NEW Rating Flagging Images</description>
                 <left>300</left>
                 <top>347</top>
@@ -488,8 +786,8 @@
                 <visible>!Skin.HasSetting(noMPAAStudioFlags)</visible>
                 <visible>Skin.HasSetting(NewMPAAFlags) + !Skin.HasSetting(imdbnrfanart)</visible>
                 <visible>!ListItem.IsFolder</visible>
-            </control>
-            <control type="image">
+            </control-->
+            <!--control type="image">
                 <description>Rating value</description>
                 <left>15</left>
                 <top>340</top>
@@ -501,42 +799,10 @@
                 <texture>$INFO[Listitem.StarRating]</texture>
                 <visible>!Skin.HasSetting(imdbnrfanart)</visible> 
                 <visible>!ListItem.IsFolder</visible>
-            </control>
-            <control type="label">
-                <description>Rating value</description>
-                <left>100</left>
-                <top>345</top>
-                <width>183</width>
-                <height>25</height>
-                <textcolor>white</textcolor>
-                <font>cirrus_30</font>
-                <align>left</align>
-                <label>$INFO[Listitem.Rating]</label>
-                <colordiffuse>black</colordiffuse>
-                <visible>Skin.HasSetting(imdbnrfanart)</visible>
-                <visible>!IsEmpty(ListItem.Thumb)</visible> 
-            </control>
-            <control type="image">
-                <width>84</width>
-                <height>31</height>
-                <left>15</left>
-                <top>345</top>
-                <aspectratio align="center">keep</aspectratio>
-                <texture>imdb-logo.png</texture>
-                <visible>Skin.HasSetting(imdbnrfanart)</visible>
-                <visible>!ListItem.IsFolder + !IsEmpty(Listitem.Rating)</visible>
-            </control>
-            <control type="image">
-                <width>150</width>
-                <height>87</height>
-                <left>210</left>
-                <top>290</top>
-                <aspectratio align="center">keep</aspectratio>
-                <texture border="2">$INFO[listitem.Studio,special://skin/extras/flagging/studios/,.png]</texture>
-                <visible>!Skin.HasSetting(NewMPAAFlags)</visible>
-                <visible>!Skin.HasSetting(noMPAAStudioFlags)</visible>
-            </control>
-            <control type="image">
+            </control-->
+            
+           
+            <!--control type="image">
                 <width>150</width>
                 <height>87</height>
                 <left>500</left>
@@ -545,7 +811,7 @@
                 <texture border="2">$INFO[listitem.Studio,special://skin/extras/flagging/studios/,.png]</texture>
                 <visible>Skin.HasSetting(NewMPAAFlags)</visible>
                 <visible>!Skin.HasSetting(noMPAAStudioFlags)</visible>
-            </control>
+            </control-->
         </control>
         <!-- WHEN INFO IS NOT HIDDEN TV SHOWS -->
         <!-- Update 1.1 Next Aired + Alignment Correction -->
@@ -562,19 +828,19 @@
                 <effect type="zoom" start="100" end="80" center="640,360" easing="in" tween="back" time="300"/>
                 <effect type="fade" start="100" end="0" time="300"/>
             </animation> 
-            <control type="image">
+            <!--control type="image">
                 <left>-100</left>
                 <top>-10</top>
                 <width>1480</width>
                 <height>400</height>
                 <texture>videoinfoback.png</texture>
                 <aspectratio>stretch</aspectratio>
-            </control>
+            </control-->
             <control type="group">
                 <left>80</left>
                 <top>20</top>
                 <visible>Container.Content(TVShows)</visible>
-                <control type="largeimage" id="7914"> 
+                <!--control type="largeimage" id="7914"> 
                     <left>-60</left> 
                     <top>-20</top> 
                     <width>470</width> 
@@ -582,21 +848,9 @@
                     <texture background="true">$INFO[ListItem.Art(clearlogo)]</texture>
                     <fadetime>IconCrossfadeTime</fadetime>
                     <aspectratio scalediffuse="false" aligny="center" align="left">keep</aspectratio> 
-                </control>
-                <control type="label">
-                    <description>Nextaired</description>
-                    <left>-60</left>
-                    <top>300</top>
-                    <width>250</width>
-                    <height>25</height>
-                    <label>$VAR[NextAired]</label>
-                    <align>left</align>
-                    <aligny>center</aligny>
-                    <font>cirrus_24</font>
-                    <scroll>true</scroll>
-                    <visible>!IsEmpty(ListItem.Thumb)</visible> 
-                </control>	
-                <control type="label">
+                </control-->
+                
+                <!--control type="label">
                     <left>-60</left>
                     <top>135</top>
                     <width>470</width>
@@ -609,23 +863,9 @@
                     <label>$INFO[ListItem.Genre,[COLOR=accent]$LOCALIZE[515]:[/COLOR] ]</label>
                     <scrollout>false</scrollout>
                     <pauseatend>2000</pauseatend>
-                </control>
-                <control type="fadelabel">
-                    <left>-60</left>
-                    <top>330</top>
-                    <width>470</width>
-                    <height>30</height>
-                    <font>cirrus_24</font>
-                    <textcolor>white</textcolor>
-                    <scroll>true</scroll>
-                    <align>left</align>
-                    <aligny>center</aligny>
-                    <label>[COLOR=accent]$LOCALIZE[20416]:[/COLOR] $INFO[ListItem.Premiered]</label>
-                    <scrollout>false</scrollout>
-                    <pauseatend>2000</pauseatend>
-                    <visible>!IsEmpty(ListItem.Thumb)</visible> 
-                </control>
-                <control type="textbox">
+                </control-->
+                
+                <!--control type="textbox">
                     <description>Movie Plot</description>
                     <left>-60</left>
                     <top>170</top>
@@ -636,11 +876,11 @@
                     <textcolor>white</textcolor>
                     <label>$INFO[ListItem.Plot]</label>
                     <autoscroll time="2000" delay="3000" repeat="5000">Skin.HasSetting(AutoScroll)</autoscroll>
-                </control>
+                </control-->
             </control>
             <control type="group">
                 <left>-60</left>
-                <control type="image">
+                <!--control type="image">
                     <left>700</left>
                     <top>40</top>
                     <width>540</width>
@@ -652,8 +892,8 @@
                     <visible>!Skin.HasSetting(SmallwindowhiddenTV)</visible>
                     <visible>!Player.HasVideo | !Skin.HasSetting(videowindownoborder) | !Skin.HasSetting(videowindowglobal)</visible>
                     <visible>!IsEmpty(ListItem.Thumb)</visible> 
-                </control>
-                <control type="image">
+                </control-->
+                <!--control type="image">
                     <left>700</left>
                     <top>40</top>
                     <width>540</width>
@@ -666,8 +906,8 @@
                     <visible>!Player.HasVideo | !Skin.HasSetting(videowindowglobal)</visible>
                     <visible>!Skin.HasSetting(SmallwindowhiddenTV)</visible>
                     <visible>!IsEmpty(ListItem.Thumb)</visible> 
-                </control>
-                <control type="image">
+                </control-->
+                <!--control type="image">
                     <left>700</left>
                     <top>40</top>
                     <width>540</width>
@@ -680,8 +920,8 @@
                     <visible>!Player.HasVideo | !Skin.HasSetting(videowindowglobal)</visible>
                     <visible>!Skin.HasSetting(SmallwindowhiddenTV)</visible>
                     <visible>!IsEmpty(ListItem.Thumb)</visible> 
-                </control>
-                <control type="videowindow" id="8">
+                </control-->
+                <!--control type="videowindow" id="8">
                     <left>714</left>
                     <top>56</top>
                     <width>513</width>
@@ -689,8 +929,8 @@
                     <align>right</align>
                     <visible>Skin.Hassetting(videowindowglobal)</visible>
                     <visible>Control.IsVisible(508)</visible>
-                </control> 
-                <control type="label">
+                </control--> 
+                <!--control type="label">
                     <description>Title label</description>
                     <left>810</left>
                     <top>275</top>
@@ -705,8 +945,8 @@
                     <visible>Player.HasVideo</visible>
                     <visible>Control.IsVisible(508)</visible>
                     <visible>!Skin.HasSetting(videonotitle)</visible>
-                </control>
-                <control type="image">
+                </control-->
+                <!--control type="image">
                     <left>1141</left>
                     <top>43</top>
                     <width>91</width>
@@ -717,8 +957,8 @@
                     <visible>!Player.HasVideo | !Skin.HasSetting(videowindowglobal)</visible>
                     <visible>!Skin.HasSetting(SmallwindowhiddenTV)</visible>
                     <visible>!Skin.HasSetting(originalwatched)</visible>
-                </control>
-                <control type="image">
+                </control-->
+                <!--control type="image">
                     <left>794</left>
                     <top>43</top>
                     <width>91</width>
@@ -729,28 +969,17 @@
                     <visible>!IsEmpty(ListItem.Trailer) + !Skin.HasSetting(trailerflag)</visible>
                     <visible>!Player.HasVideo | !Skin.HasSetting(videowindowglobal)</visible>
                     <visible>!Skin.HasSetting(SmallwindowhiddenTV)</visible>
-                </control>
-                <control type="label">
-                    <description>Episodes</description>
-                    <left>650</left>
-                    <top>350</top>
-                    <width>640</width>
-                    <height>25</height>
-                    <label fallback="416">[COLOR=accent]$LOCALIZE[20360]: [/COLOR]$INFO[listitem.episode] [COLOR=grey] ($INFO[ListItem.Property(WatchedEpisodes),, $LOCALIZE[16102]] - $INFO[ListItem.Property(UnWatchedEpisodes), , $LOCALIZE[16101]])[/COLOR]</label>
-                    <align>center</align>
-                    <font>cirrus_24</font>
-                    <scroll>true</scroll>
-                    <visible>!IsEmpty(ListItem.Thumb)</visible> 
-                </control>
+                </control-->
+               
             </control>
-            <control type="image">
+            <!--control type="image">
                 <width>150</width>
                 <height>50</height>
                 <left>830</left>
                 <top>-5</top>
                 <aspectratio align="center">keep</aspectratio>
                 <texture diffuse="maskflags.png">$INFO[listitem.Studio,special://skin/extras/flagging/studios/,.png]</texture>
-            </control>
+            </control-->
         </control>
         <!-- WHEN INFO IS NOT HIDDEN SEASONS -->
         <control type="group">
@@ -765,15 +994,15 @@
                 <effect type="zoom" start="100" end="80" center="640,360" easing="in" tween="back" time="300"/>
                 <effect type="fade" start="100" end="0" time="300"/>
             </animation> 
-            <control type="image">
+            <!--control type="image">
                 <left>-100</left>
                 <top>-10</top>
                 <width>1480</width>
                 <height>400</height>
                 <texture>videoinfoback.png</texture>
                 <aspectratio>stretch</aspectratio>
-            </control>
-            <control type="group">
+            </control-->
+            <!--control type="group">
                 <left>80</left>
                 <top>20</top>
                 <visible>Container.Content(Seasons)</visible>
@@ -796,8 +1025,7 @@
                     <bordertexture border="8">ContentPanelvertical.png</bordertexture>
                     <bordersize>8</bordersize>
                 </control>
-                <control type="fadelabel">
-                    <!-- title only visible if logo doesnt exits -->
+                <control type="fadelabel">                  
                     <left>-50</left>
                     <top>325</top>
                     <width>470</width>
@@ -824,8 +1052,8 @@
                     <autoscroll time="2000" delay="3000" repeat="5000">Skin.HasSetting(AutoScroll)</autoscroll>
                     <visible>Container.Content(seasons)</visible>
                 </control>
-            </control>
-            <control type="group">
+            </control-->
+            <!--control type="group">
                 <left>-60</left>
                 <control type="image">
                     <left>700</left>
@@ -841,7 +1069,7 @@
                     <visible>!IsEmpty(ListItem.Thumb)</visible> 
                 </control>
                 <control type="image">
-                    <!-- seasonthumb mod -->
+                    
                     <left>700</left>
                     <top>40</top>
                     <width>540</width>
@@ -945,15 +1173,15 @@
                     <visible>!Player.HasVideo | !Skin.HasSetting(videowindowglobal)</visible>
                     <visible>!IsEmpty(ListItem.Thumb)</visible> 
                 </control>
-            </control>
-            <control type="image">
+            </control-->
+            <!--control type="image">
                 <width>150</width>
                 <height>50</height>
                 <left>830</left>
                 <top>-5</top>
                 <aspectratio align="center">keep</aspectratio>
                 <texture diffuse="maskflags.png">$INFO[listitem.Studio,special://skin/extras/flagging/studios/,.png]</texture>
-            </control>
+            </control-->
         </control>
         <!-- WHEN INFO IS NOT HIDDEN EPISODES -->
         <control type="group">
@@ -969,15 +1197,15 @@
                 <effect type="zoom" start="100" end="80" center="640,360" easing="in" tween="back" time="300"/>
                 <effect type="fade" start="100" end="0" time="300"/>
             </animation> 
-            <control type="image">
+            <!--control type="image">
                 <left>-100</left>
                 <top>-10</top>
                 <width>1480</width>
                 <height>400</height>
                 <texture>videoinfoback.png</texture>
                 <aspectratio>stretch</aspectratio>
-            </control>
-            <control type="group">
+            </control-->
+            <!--control type="group">
                 <left>80</left>
                 <top>20</top>
                 <visible>Container.Content(Episodes)</visible>
@@ -1057,8 +1285,8 @@
                     <aspectratio scalediffuse="false" aligny="center" align="left">keep</aspectratio> 
                     <visible>!IsEmpty(ListItem.Thumb)</visible> 
                 </control>
-            </control>
-            <control type="group">
+            </control-->
+            <!--control type="group">
                 <left>-60</left>
                 <control type="image">
                     <left>700</left>
@@ -1074,7 +1302,7 @@
                     <visible>!IsEmpty(ListItem.Thumb)</visible> 
                 </control>
                 <control type="image">
-                    <!-- episodethumb mod -->
+                  
                     <left>700</left>
                     <top>40</top>
                     <width>540</width>
@@ -1176,7 +1404,7 @@
                     <include>AudioCodecFlaggingConditions</include>
                     <include>AspectCodecFlaggingConditions</include>
                 </control>
-            </control>
+            </control-->
         </control>
     </include>
 </includes>
