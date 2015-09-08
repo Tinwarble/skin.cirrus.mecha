@@ -556,9 +556,9 @@
 			<visible>Control.IsVisible(721)</visible>                
 			<control type="image"> 
 				<left>0</left>
-				<top>655</top>
+				<top>582</top>
 				<width>1280</width>
-				<height>65</height>
+				<height>138</height>
 				<aspectratio>stretch</aspectratio>
 				<texture background="true">special://skin/media/Showcase_mod/showcase_infobar.png</texture>                    
 			</control> 
