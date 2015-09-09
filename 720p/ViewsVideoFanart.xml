@@ -15,7 +15,7 @@
 					<width>1280</width>
 					<height>50</height>
 					<aspectratio>stretch</aspectratio>
-					<texture flipy="true">special://skin/media/Showcase_mod/showcase_diffuser.png</texture>
+					<texture flipy="true">special://skin/media/Common/shadow_diffuser.png</texture>
 				</control>
 			<!-- Bottom Shadow -->
 				<control type="image">				
@@ -24,7 +24,7 @@
 					<width>1280</width>
 					<height>250</height>
 					<aspectratio>stretch</aspectratio>
-					<texture>special://skin/media/Showcase_mod/showcase_diffuser.png</texture>
+					<texture>special://skin/media/Common/shadow_diffuser.png</texture>
 					<colordiffuse>white</colordiffuse>
 				</control>
 			<!-- Meta background -->

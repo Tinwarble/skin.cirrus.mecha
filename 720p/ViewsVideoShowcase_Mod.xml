@@ -1070,7 +1070,7 @@
 			<width>1400</width>
 			<height>57</height>
 			<aspectratio>stretch</aspectratio>
-			<texture background="true">special://skin/media/Showcase_mod/showcase_diffuser.png</texture>
+			<texture background="true">special://skin/media/Common/shadow_diffuser.png</texture>
 			<bordersize>6</bordersize>
 			<colordiffuse>ff444444</colordiffuse>
             <visible>Control.IsVisible(721)</visible>
