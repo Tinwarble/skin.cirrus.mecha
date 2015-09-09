@@ -55,11 +55,11 @@
                 <width>352</width>
                 <height>891</height>
                 <onleft>2</onleft>
-                <onright>60</onright>
+                <onright>64</onright>
                 <onup>709</onup>
 				<ondown>709</ondown>                
                 <viewtype label="41128">fixedlist</viewtype>
-                <pagecontrol>60</pagecontrol>
+                <pagecontrol>64</pagecontrol>
                 <scrolltime tween="quadratic" easing="out">300</scrolltime>
                 <focusposition>2</focusposition>
                 <orientation>vertical</orientation>
@@ -210,7 +210,7 @@
             <visible>Control.IsVisible(709)</visible>
         </control>
 	<!-- Scroll Bar -->	
-		<control type="scrollbar" id="60">				
+		<control type="scrollbar" id="64">				
 			<left>453</left>
 			<top>20</top>
 			<width>20</width>
@@ -221,7 +221,7 @@
 			<onleft>709</onleft>
 			<showonepage>false</showonepage>
 			<orientation>vertical</orientation>
-			<visible allowhiddenfocus="true">Control.IsVisible(709) + Control.HasFocus(60)</visible>
+			<visible allowhiddenfocus="true">Control.IsVisible(709) + Control.HasFocus(64)</visible>
 		</control>
 
     <!-- RIGHTSIDE INFO CONTROL -->    

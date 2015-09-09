@@ -40,7 +40,7 @@
 			<width>1280</width>
 			<height>80</height>
 			<aspectratio>stretch</aspectratio>
-			<texture>special://skin/media/Showcase_mod/showcase_diffuser2.png</texture>
+			<texture>special://skin/media/Common/floor_diffuser.png</texture>
 			<visible>Control.IsVisible(665)</visible>
 		</control>	
         <control type="image">           

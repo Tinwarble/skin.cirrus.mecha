@@ -5,16 +5,7 @@
   <!-- ====================Movies, TV Shows, Seasons, Episodes, Music ====================== -->
 	<include name="Compact">	
 		<control type="group">
-			<visible>Control.IsVisible(515)</visible>
-			<!--control type="image">
-				<top>0</top>
-				<left>0</left>
-				<width>1280</width>
-				<height>720</height>
-				<aspectratio>stretch</aspectratio>
-				<texture>special://skin/media/Compact/background5.png</texture>							
-				<visible>Control.IsVisible(515)</visible>
-			</control-->		
+			<visible>Control.IsVisible(515)</visible>			
 		<!-- COVERART FLOOR -->	
 			<control type="image">
 				<top>594</top>
@@ -22,7 +13,7 @@
 				<width>1400</width>
 				<height>68</height>
 				<aspectratio>stretch</aspectratio>
-				<texture>special://skin/media/Showcase_mod/showcase_diffuser2.png</texture>							
+				<texture>special://skin/media/Common/floor_diffuser.png</texture>			
 				<visible>Control.IsVisible(515)</visible>
 			</control>		
 		<!-- Metadata & Title Background -->	
@@ -347,9 +338,9 @@
 				<control type="textbox">				
 					<description>plot</description>
 					<left>7</left>
-					<top>80</top>
+					<top>76</top>
 					<width>470</width>
-					<height>112</height>
+					<height>116</height>
 					<label>$VAR[ListItemPlot]</label>
 					<align>justify</align>
 					<aligny>top</aligny>
@@ -457,7 +448,7 @@
 					<width>1280</width>
 					<height>138</height>
 					<aspectratio>stretch</aspectratio>
-					<texture background="true">special://skin/media/Showcase_mod/showcase_infobar.png</texture>
+					<texture background="true">special://skin/media/Common/infobar.png</texture>
 				</control>
 			</control>
 			<control type="group">
