@@ -6,7 +6,7 @@
 		<!-- ===============THIS IS A WIP TO ADD COVERFLOW OPTION TO FANART VIEW===========--->
 		        <!-- ======== ANIMATIONS TO THE righT ============ -->
 		<control type="group">
-		<visible>Skin.HasSetting(UseCoverflow)</visible>
+		
 			<!--control type="group" id="7001">
 				<include>Window_OpenClose_Animation</include>
 				<top>430</top>
@@ -253,10 +253,10 @@
 				</control>
 			</control-->
 			<!-- ===================NON AMIMATION========================== -->
-			<ontrol type="group" id="7000">
+			<control type="group" id="7000">
 				<include>Window_OpenClose_Animation</include>
 				<top>425</top>
-				<visible>Control.IsVisible(508) + !Control.IsVisible(7001)  + !Control.IsVisible(7002)</visible>
+				<visible>Control.IsVisible(997) + !Control.IsVisible(7001)  + !Control.IsVisible(7002)</visible>
 				 <control type="group">
 					<left>4</left>
 					<animation effect="rotatey" center="69" start="-50" end="-50" time="0" condition="true">Conditional</animation>
@@ -381,15 +381,15 @@
 						<texture background="true">$INFO[ListItem.Icon]</texture>
 						<bordertexture border="8">ThumbBorder.png</bordertexture>
 						<bordersize>8</bordersize>
-						<visible>Control.HasFocus(508) | !Control.HasFocus(508)</visible>
+						<visible>Control.HasFocus(997) | !Control.HasFocus(997)</visible>
 					</control>            
 					
 				</control>
 			</control>
 
 			 <!-- LIST BIT -->
-			<control type="wraplist" id="998">
-				<visible>Skin.HasSetting(coverflow_view) + Control.IsVisible(508)</visible>
+			<control type="panel" id="997">
+				<visible>Control.IsVisible(997) + Container.Content(Movies)</visible>
 				<include>Window_OpenClose_Animation</include>
 				<description>Fake list to control coverflow movement</description>
 				<visible>Container.Content(Movies)</visible>
@@ -401,7 +401,7 @@
 				<onright>57</onright>
 				<onup>60</onup>
 				
-				<viewtype label="33031">list</viewtype>
+				<viewtype label="41603">panel</viewtype>
 				<pagecontrol>60</pagecontrol>
 				<orientation>horizontal</orientation>
 				<scrolltime>250</scrolltime>

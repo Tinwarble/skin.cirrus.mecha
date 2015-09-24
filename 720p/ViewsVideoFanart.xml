@@ -15,7 +15,7 @@
 					<width>1280</width>
 					<height>50</height>
 					<aspectratio>stretch</aspectratio>
-					<texture flipy="true">special://skin/media/Showcase_mod/showcase_diffuser.png</texture>
+					<texture flipy="true">special://skin/media/Common/shadow_diffuser.png</texture>
 				</control>
 			<!-- Bottom Shadow -->
 				<control type="image">				
@@ -24,7 +24,7 @@
 					<width>1280</width>
 					<height>250</height>
 					<aspectratio>stretch</aspectratio>
-					<texture>special://skin/media/Showcase_mod/showcase_diffuser.png</texture>
+					<texture>special://skin/media/Common/shadow_diffuser.png</texture>
 					<colordiffuse>white</colordiffuse>
 				</control>
 			<!-- Meta background -->
@@ -172,7 +172,7 @@
 					<scrollout>false</scrollout>
 					<pauseatend>2000</pauseatend>
 					<visible>!Skin.HasSetting(Smallwindowhidden)</visible>
-					<visible>Container.Content(Movies) | [Container.Content(TVShows) + IsEmpty(ListItem.Art(clearlogo)] | [Container.Content(Seasons) + IsEmpty(ListItem.Art(tvshow.clearlogo)]</visible>
+					<visible>Container.Content(Movies) | ListItem.IsCollection | [Container.Content(TVShows) + IsEmpty(ListItem.Art(clearlogo)] | [Container.Content(Seasons) + IsEmpty(ListItem.Art(tvshow.clearlogo)]</visible>
 				</control>
 			<!-- Meta Separator - Title -->
 				<control type="image">				
@@ -182,7 +182,7 @@
 					<height>1</height>
 					<aspectratio>stretch</aspectratio>
 					<texture>special://skin/media/hseparator.png</texture>
-					<visible>Container.Content(Movies) | [Container.Content(TVShows) + IsEmpty(ListItem.Art(clearlogo)] | [Container.Content(Seasons) + IsEmpty(ListItem.Art(tvshow.clearlogo)]</visible>
+					<visible>Container.Content(Movies) | ListItem.IsCollection | [Container.Content(TVShows) + IsEmpty(ListItem.Art(clearlogo)] | [Container.Content(Seasons) + IsEmpty(ListItem.Art(tvshow.clearlogo)]</visible>
 				</control>			
 			<!--Genre Text -->
 				<control type="label">
@@ -199,7 +199,7 @@
 					<scrollout>false</scrollout>
 					<pauseatend>2000</pauseatend>
 					<visible>!Skin.HasSetting(Smallwindowhidden)</visible>
-					<visible>Container.Content(Movies) | [Container.Content(TVShows) + IsEmpty(ListItem.Art(clearlogo)] | [Container.Content(Seasons) + IsEmpty(ListItem.Art(tvshow.clearlogo)]</visible>
+					<visible>Container.Content(Movies) | ListItem.IsCollection | [Container.Content(TVShows) + IsEmpty(ListItem.Art(clearlogo)] | [Container.Content(Seasons) + IsEmpty(ListItem.Art(tvshow.clearlogo)]</visible>
 				</control>
 			<!-- Movie Year & Duration Text -->
 				<control type="fadelabel">
@@ -507,7 +507,7 @@
 			<width>1280</width>
 			<height>80</height>
 			<aspectratio>stretch</aspectratio>
-			<texture>special://skin/media/Showcase_mod/showcase_diffuser2.png</texture>
+			<texture>special://skin/media/Common/floor_diffuser.png</texture>
 			<visible>Control.IsVisible(508)</visible>
 		</control>	
 
@@ -526,7 +526,8 @@
             <left>0</left>
             <top>439</top>
             <control type="fixedlist" id="508">
-                <visible>Container.Content(Movies) | Window.IsVisible(VideoFiles) | Container.Content(TVShows) | Container.Content(Seasons) | !Container.Content(Episodes)</visible>
+                <visible>Container.Content(Movies) | Container.Content(Sets) |  
+				Window.IsVisible(VideoFiles) | Container.Content(TVShows) | Container.Content(Seasons) | !Container.Content(Episodes)</visible>
                 <left>-80</left>
                 <top>-10</top>
                 <width>1440</width>
@@ -534,16 +535,13 @@
                 <onleft>508</onleft>
                 <onright>508</onright>
                 <onup>60</onup>
-            
-                
                 <viewtype label="20445">fixedlist</viewtype>
                 <pagecontrol>60</pagecontrol>
                 <scrolltime tween="quadratic" easing="out">300</scrolltime>
                 <focusposition>4</focusposition>
                 <orientation>horizontal</orientation>
                 <preloaditems>2</preloaditems>
-          
-                <itemlayout condition="Container.Content(Movies) | Container.Content(Seasons) | Container.Content(TVShows)" height="310" width="160">
+                <itemlayout condition="Container.Content(Movies) | Container.Content(Sets) | Container.Content(Seasons) | Container.Content(TVShows)" height="310" width="160">
                     <control type="image">
                         <left>2</left>
                         <top>20</top>
@@ -574,7 +572,7 @@
                         <visible>Player.HasVideo | Skin.HasSetting(originalwatched)</visible>
                     </control>
                 </itemlayout>
-                <focusedlayout condition="Container.Content(Movies) | Container.Content(Seasons) | Container.Content(TVShows)" height="310" width="160">
+                <focusedlayout condition="Container.Content(Movies) | Container.Content(Sets) | Container.Content(Seasons) | Container.Content(TVShows)" height="310" width="160">
                     <control type="group">
                         <animation type="Focus" reversible="false">
                             <effect type="zoom" center="80,118" start="100" end="135" time="300" easing="out" tween="cubic" reversible="false"/>

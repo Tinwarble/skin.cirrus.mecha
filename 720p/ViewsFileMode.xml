@@ -43,6 +43,7 @@
       <visible>Control.IsVisible(55)</visible>
       <include>VisibleFadeEffect</include>
       <control type="list" id="55">
+	  <visible>!Container.Content(Movies) + !Container.Content(TVShows)</visible>
         <left>60</left>
         <top>138</top>
         <width>700</width>
