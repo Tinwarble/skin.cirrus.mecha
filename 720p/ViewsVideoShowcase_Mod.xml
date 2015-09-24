@@ -1068,7 +1068,7 @@
 			<top>-10</top>
 			<left>-25</left>
 			<width>1400</width>
-			<height>57</height>
+			<height>107</height>
 			<aspectratio>stretch</aspectratio>
 			<texture background="true">special://skin/media/Common/shadow_diffuser.png</texture>
 			<bordersize>6</bordersize>

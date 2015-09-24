@@ -1563,14 +1563,18 @@ msgctxt "#41273"
 msgid "Show Clearart"
 msgstr ""
 
+msgctxt "#41274"
+msgid "Hide Clearlogo and Studio"
+msgstr ""
+
+msgctxt "#41275"
+msgid "Hide Coverart Overlay"
+msgstr ""
+
 #New labels Misc.  Cirrus Extended v2 *** NEW V2.1.0
 #empty string with id 41272
 
 
-
-
-
-#empty string with id 41275
 
 msgctxt "#41276"
 msgid "Hide Common Page Count"
@@ -1650,6 +1654,8 @@ msgctxt "#41600"
 msgid "Batch Download Artwork"
 msgstr ""
 
-msgctxt "#41601"
-msgid "Get Artwork - Auto"
+
+msgctxt "#41602"
+msgid "Show Coverflow"
 msgstr ""
+
