@@ -49,6 +49,7 @@
 				<itemlayout height="217" width="153">
 					<control type="group">
 						<top>-24</top>
+					<!-- Non-Focused Coverart -->
 						<control type="image">
 							<left>27</left>
 							<top>24</top>
@@ -59,7 +60,8 @@
 							<texture background="true">$INFO[Listitem.Icon]</texture>
 							<bordertexture border="8">ContentPanelvertical.png</bordertexture>
 							<bordersize>8</bordersize>
-						</control>						
+						</control>
+					<!-- Darkening overaly -->
 						<control type="image">
 							<left>27</left>
 							<top>24</top>
@@ -78,6 +80,7 @@
 						</animation>
 					<control type="group">
 						<top>-24</top>
+					<!-- Green Focus Glow -->
 						<control type="image">
 							<left>5</left>
 							<top>25</top>
@@ -87,6 +90,7 @@
 							<fadetime>200</fadetime>
 							<texture background="true">special://skin/media/Common/focus_glow.png</texture>
 						</control>
+					<!-- Focused Coverart -->
 						<control type="image">
 							<left>27</left>
 							<top>24</top>
@@ -102,8 +106,24 @@
 					</control>
 				</focusedlayout>
 			</control>
+		<!-- Scrollbar -->
+			<control type="scrollbar" id="64">
+				<left>1249</left>
+				<top>50</top>
+				<width>25</width>
+				<height>650</height>
+				<texturesliderbackground border="0,14,0,14">ScrollBarV.png</texturesliderbackground>
+				<textureslidernib>ScrollBarV.png</textureslidernib>
+				<textureslidernibfocus>ScrollBarV_bar_focus.png</textureslidernibfocus>
+				<onleft>514</onleft>
+				<onright>514</onright>
+				<showonepage>false</showonepage>
+				<orientation>vertical</orientation>
+				<visible allowhiddenfocus="true">Control.IsVisible(514) + Control.HasFocus(64)</visible>
+			</control>
 			<control type="group">
 				<top>300</top>
+			<!-- Fanart background -->
 				<control type="image">
 					<left>47</left>
 					<top>65</top>
@@ -116,6 +136,7 @@
 					<visible>!Player.HasVideo | !Skin.HasSetting(videowindownoborder) | !Skin.HasSetting(videowindowglobal)</visible>
 					<visible>!IsEmpty(ListItem.Thumb)</visible>
 				</control>
+			<!-- Fanart -->
 				<control type="image">
 					<left>47</left>
 					<top>65</top>
@@ -126,6 +147,7 @@
 					<texture background="true">$INFO[ListItem.Art(fanart)]</texture>
 					<visible>!Player.HasVideo | !Skin.HasSetting(videowindowglobal)</visible>
 				</control>
+			<!-- Extra fanart (thumbs) -->
 				<control type="multiimage">
 					<left>47</left>
 					<top>65</top>
@@ -137,6 +159,7 @@
 					<imagepath background="true">$INFO[ListItem.Path]\extrathumbs</imagepath>
 					<visible>!Player.HasVideo | !Skin.HasSetting(videowindowglobal)</visible>
 				</control>
+			<!-- Fanart overlay frame -->
 				<control type="image">
 					<left>32</left>
 					<top>50</top>
@@ -145,6 +168,7 @@
 					<texture>special://skin/media/HalfWall/hw_fanart_ol.png</texture>
 					<visible>!IsEmpty(ListItem.Title)</visible>
 				</control>
+			<!-- Codec flags -->
 				<control type="grouplist">
 					<description>Media Codec Flagging Images</description>
 					<left>35</left>
@@ -158,11 +182,10 @@
 					<include>AspectCodecFlaggingConditions</include>
 				</control>
 			</control>
-			<control type="group">
-				<!-- Labels -->
-				
+			<control type="group">				
 				<top>120</top>
 				<visible>Container.Content(Movies)</visible>
+			<!-- Title Text -->
 				<control type="fadelabel">
 					<left>34</left>
 					<top>-60</top>
@@ -178,6 +201,7 @@
 					<scrollout>false</scrollout>
 					<pauseatend>2000</pauseatend>
 				</control>
+			<!-- Genre Text -->
 				<control type="label">
 					<left>34</left>
 					<top>30</top>
@@ -189,10 +213,11 @@
 					<scroll>false</scroll>
 					<align>left</align>
 					<aligny>center</aligny>
-					<label>$INFO[ListItem.Genre,[COLOR=accent]$LOCALIZE[515]:[/COLOR] ]</label>
+					<label>$VAR[ListItemGenre,[COLOR=accent][/COLOR]]</label>
 					<scrollout>false</scrollout>
 					<pauseatend>2000</pauseatend>
 				</control>
+			<!-- Year & Duration Text -->
 				<control type="fadelabel">
 					<left>34</left>
 					<top>60</top>
@@ -221,6 +246,38 @@
 					<visible>!ListItem.IsCollection</visible>
 					<visible>!Content.Container(Movies) + !Container.Content(TVShows) + !Container.Content(Seasons) + !IsEmpty(ListItem.Year)</visible>
 				</control>
+			<!-- Collection Count Text -->
+                <control type="label">
+                    <left>34</left>
+                    <top>60</top>
+                    <width>280</width>
+                    <height>25</height>
+                    <font>cirrus_22</font>
+                    <textcolor>white</textcolor>
+                    <scroll>true</scroll>
+                    <align>left</align>
+                    <aligny>center</aligny>
+					<autoscroll time="6000" delay="5000" repeat="5000"></autoscroll>
+					<orientation>horizontal</orientation>
+                    <label>[COLOR=accent]Movies In Collection:[/COLOR] $VAR[ListItemCount]</label>
+                    <visible>ListItem.IsCollection</visible>
+				</control>
+			<!-- Collection Duration Text -->
+                <control type="fadelabel">
+                    <left>280</left>
+                    <top>60</top>
+                    <width>260</width>
+                    <height>25</height>
+                    <font>cirrus_22</font>
+                    <textcolor>white</textcolor>
+                    <scroll>true</scroll>
+                    <align>left</align>
+                    <aligny>center</aligny>
+                    <label>[COLOR=accent]Total Runtime:[/COLOR] $VAR[ListItemRuntime]</label>
+                    <scrollout>false</scrollout>
+                    <pauseatend>2000</pauseatend>
+                    <visible>ListItem.IsCollection</visible>
+                </control>
 			<!-- Meta Separator - Plot -->
 				<control type="image">				
 					<left>34</left>
@@ -228,7 +285,8 @@
 					<width>535</width>
 					<height>1</height>
 					<aspectratio>stretch</aspectratio>
-					<texture>special://skin/media/hseparator.png</texture>				
+					<texture>special://skin/media/hseparator.png</texture>
+					<visible>!IsEmpty(ListItem.Title)</visible>
 				</control>			
 				<control type="label">
 					<description>Trailer Label while movie is playing</description>
@@ -245,6 +303,7 @@
 					<visible>!IsEmpty(ListItem.Trailer) + Skin.HasSetting(trailerflag)</visible>
 					<visible>!ListItem.IsFolder</visible>
 				</control>
+			<!-- Plot Text -->
 				<control type="textbox">
 					<description>Movie Plot</description>
 					<left>34</left>
@@ -258,6 +317,7 @@
 					<autoscroll time="2000" delay="3000" repeat="5000">Skin.HasSetting(AutoScroll)</autoscroll>
 				</control>
 			</control>
+		<!-- MPAA Rating -->
 			<control type="grouplist">
 				<description>MPAA Rating Flagging Images</description>
 				<left>34</left>
@@ -269,8 +329,7 @@
 				<include>VideoMPAAFlaggingConditions</include>				
 				<visible>!ListItem.IsFolder</visible>
 			</control>			
-			<control type="group">
-				<!-- Fanart and media flags -->
+			<!--control type="group">				
 				<left>10</left>
 				<top>330</top>
 				<width>640</width>
@@ -283,21 +342,8 @@
 				  <effect type="zoom" start="100" end="80" center="640,360" easing="in" tween="back" time="300" />
 				  <effect type="fade" start="100" end="0" time="300" />
 				</animation>
+								
 				
-				
-				<!-- <control type="image">
-					<left>120</left>
-					<top>20</top>
-					<width>385</width>
-					<height>200</height>
-					<texture>dialogbackground.png</texture>
-					<bordertexture border="8">ThumbBorder.png</bordertexture>
-					<bordersize>4</bordersize>
-					<aspectratio>stretch</aspectratio>
-					<visible>Skin.Hassetting(videowindowglobal)</visible>
-					<visible>Player.HasVideo</visible>
-					<visible>Control.IsVisible(514)</visible>
-				</control> -->
 				<control type="videowindow" id="8">
 					<left>24</left>
 					<top>61</top>
@@ -323,22 +369,7 @@
 					<visible>Player.HasVideo</visible>
 					<visible>!Skin.HasSetting(videonotitle)</visible>
 				</control>
-			</control>
-			
-			<control type="scrollbar" id="64">
-				<left>1249</left>
-				<top>50</top>
-				<width>25</width>
-				<height>650</height>
-				<texturesliderbackground border="0,14,0,14">ScrollBarV.png</texturesliderbackground>
-				<textureslidernib>ScrollBarV.png</textureslidernib>
-				<textureslidernibfocus>ScrollBarV_bar_focus.png</textureslidernibfocus>
-				<onleft>514</onleft>
-				<onright>514</onright>
-				<showonepage>false</showonepage>
-				<orientation>vertical</orientation>
-				<visible allowhiddenfocus="true">Control.IsVisible(514) + Control.HasFocus(64)</visible>
-			</control>
+			</control-->			
 		</control>
 	</include>
 </includes>
