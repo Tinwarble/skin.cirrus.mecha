@@ -1,0 +1,278 @@
+<!-- START OF ACTUAL LIST -->
+            <control type="fixedlist" id="556">
+                <!-- Trailer mod -->
+                <visible>Skin.HasSetting(bigposter_view)</visible>
+                <left>65</left>
+                <top>400</top>
+                <width>1280</width>
+                <height>340</height>
+                <onleft>556</onleft>
+                <onright>556</onright>
+                <onup>8240</onup>               
+                <viewtype label="41119">list</viewtype>
+                <focusposition>0</focusposition>
+                <pagecontrol>60</pagecontrol>
+                <scrolltime tween="cubic" easing="out">300</scrolltime>
+                <orientation>horizontal</orientation>
+                <preloaditems>5</preloaditems>
+                <visible>Container.Content(Movies)</visible>
+                <itemlayout width="158">
+				<!-- NO CASES CONTROL -->
+					<control type="group">
+						 <visible>!Skin.HasSetting(showBigposterCases) + !Skin.HasSetting(showBigposterClearCases)</visible>
+						<control type="image">                       
+							<left>-150</left>
+							<top>25</top>
+							<width>153</width>
+							<height>232</height>
+							<aspectratio>stretch</aspectratio>
+							<fadetime>IconCrossfadeTime</fadetime>
+							<texture background="true">$INFO[ListItem.Icon]</texture>
+							<bordertexture border="8">ContentPanelvertical.png</bordertexture>
+							<bordersize>8</bordersize>
+						</control>
+					<!-- Coverart Reflection - No Cases -->
+						<control type="image">						
+							<left>-150</left>
+							<top>261</top>
+							<width>153</width>
+							<height>232</height>
+							<aspectratio>stretch</aspectratio>
+							<fadetime>IconCrossfadeTime</fadetime>
+							<texture flipy="true" diffuse="special://skin/media/diffuser2.png" background="true">$INFO[ListItem.Icon]</texture>
+							<bordertexture border="8">ContentPanelvertical.png</bordertexture>
+							<bordersize>8</bordersize>
+						</control>
+					</control>
+				<!-- NORMAL CASES CONTROL -->
+					<control type="group">
+						 <visible>Skin.HasSetting(showBigposterCases) + !Skin.HasSetting(showBigposterClearCases)</visible>
+						<!-- Coverart for Cases -->
+							<control type="image">							
+								<left>-142</left>
+								<top>46</top>
+								<width>140</width>
+								<height>205</height>
+								<aspectratio>stretch</aspectratio>
+								<fadetime>IconCrossfadeTime</fadetime>
+								<texture background="true">$INFO[ListItem.Icon]</texture>
+							</control>
+						<!-- Coverart Reflection for Cases -->
+							<control type="image">							
+								<left>-142</left>
+								<top>264</top>
+								<width>140</width>
+								<height>205</height>
+								<aspectratio>stretch</aspectratio>
+								<fadetime>IconCrossfadeTime</fadetime>
+								<texture flipy="true" diffuse="special://skin/media/diffuser2.png" background="true">$INFO[ListItem.Icon]</texture>
+							</control>
+						<!-- Cases -->
+							<control type="image">
+								<left>-142</left>
+								<top>25</top>
+								<width>150</width>
+								<height>240</height>
+								<aspectratio aligny="bottom">stretch</aspectratio>
+								<fadetime>IconCrossfadeTime</fadetime>
+								<texture>$VAR[mediaCases]</texture>
+								<visible>Skin.HasSetting(showBigposterCases) + !Skin.HasSetting(showBigposterClearCases)</visible>
+								<visible>!ListItem.IsCollection</visible>
+							</control>
+						<!-- Cases Reflection -->
+							<control type="image">
+								<left>-142</left>
+								<top>249</top>
+								<width>150</width>
+								<height>240</height>
+								<aspectratio aligny="bottom">stretch</aspectratio>
+								<fadetime>IconCrossfadeTime</fadetime>
+								<texture flipy="true" diffuse="special://skin/media/diffuser2.png">$VAR[mediaCases]</texture>
+								<visible>Skin.HasSetting(showBigposterCases) + !Skin.HasSetting(showBigposterClearCases)</visible>
+								<visible>!ListItem.IsCollection</visible>
+							</control>
+						<!-- Collection Cases -->
+							<control type="image">
+								<left>-142</left>
+								<top>25</top>
+								<width>150</width>
+								<height>240</height>
+								<aspectratio aligny="bottom">stretch</aspectratio>
+								<fadetime>IconCrossfadeTime</fadetime>
+								<texture>special://skin/extras/flagging/cases/collection.png</texture>
+								<visible>Skin.HasSetting(showBigposterCases) + !Skin.HasSetting(showBigposterClearCases)</visible>
+								<visible>ListItem.IsCollection</visible>
+							</control>
+						<!-- Collection Cases Reflection -->
+							<control type="image">
+								<left>-142</left>
+								<top>249</top>
+								<width>150</width>
+								<height>240</height>
+								<aspectratio aligny="bottom">stretch</aspectratio>
+								<fadetime>IconCrossfadeTime</fadetime>
+								<texture flipy="true" diffuse="special://skin/media/diffuser2.png">special://skin/extras/flagging/cases/collection.png</texture>
+								<visible>Skin.HasSetting(showBigposterCases) + !Skin.HasSetting(showBigposterClearCases)</visible>
+								<visible>ListItem.IsCollection</visible>
+							</control>
+						</control>
+					<!-- CLEAR CASES CONTROL -->
+						<control type="group">
+							<visible>Skin.HasSetting(showBigposterClearCases) + Skin.HasSetting(showBigposterCases)</visible>
+						<!-- Coverart for Clear cases -->
+							<control type="image">								
+								<left>-134</left>
+								<top>32</top>
+								<width>129</width>
+								<height>218</height>
+								<aspectratio>stretch</aspectratio>
+								<fadetime>IconCrossfadeTime</fadetime>
+								<texture background="true">$INFO[ListItem.Icon]</texture>
+							</control>
+							<!-- Coverart Reflection for Clear cases -->
+							<control type="image">								
+								<left>-134</left>
+								<top>262</top>
+								<width>129</width>
+								<height>218</height>
+								<aspectratio>stretch</aspectratio>
+								<fadetime>IconCrossfadeTime</fadetime>
+								<texture flipy="true" diffuse="special://skin/media/diffuser2.png" background="true">$INFO[ListItem.Icon]</texture>
+							</control>
+						<!-- Clear cases -->
+							<control type="image">
+								<left>-153</left>
+								<top>22</top>
+								<width>157</width>
+								<height>239</height>
+								<aspectratio aligny="bottom">stretch</aspectratio>
+								<fadetime>IconCrossfadeTime</fadetime>
+								<texture>$VAR[mediaCases]</texture>								
+								<visible>!ListItem.IsCollection</visible>
+							</control>	
+						<!-- Clear cases Reflection -->
+							<control type="image">
+								<left>-153</left>
+								<top>253</top>
+								<width>157</width>
+								<height>239</height>
+								<aspectratio aligny="bottom">stretch</aspectratio>
+								<fadetime>IconCrossfadeTime</fadetime>
+								<texture flipy="true" diffuse="special://skin/media/diffuser2.png">$VAR[mediaCases]</texture>								
+								<visible>!ListItem.IsCollection</visible>
+							</control>	
+						<!-- Clear cases for Collection -->
+							<control type="image">
+								<left>-153</left>
+								<top>22</top>
+								<width>157</width>
+								<height>239</height>
+								<aspectratio aligny="bottom">stretch</aspectratio>
+								<fadetime>IconCrossfadeTime</fadetime>
+								<texture>special://skin/extras/flagging/cases/collection-clear.png</texture>
+								<visible>ListItem.IsCollection</visible>
+							</control>
+						<!-- Clear cases Reflection for Collection -->
+							<control type="image">
+								<left>-153</left>
+								<top>253</top>
+								<width>157</width>
+								<height>239</height>
+								<aspectratio aligny="bottom">stretch</aspectratio>
+								<fadetime>IconCrossfadeTime</fadetime>
+								<texture flipy="true" diffuse="special://skin/media/diffuser2.png">special://skin/extras/flagging/cases/collection-clear.png</texture>
+								<visible>ListItem.IsCollection</visible>
+							</control>
+						</control> 
+                </itemlayout>
+                <focusedlayout width="420">
+                    <control type="group">                        
+                        <animation effect="fade" start="100" end="0" time="200">Focus</animation>
+                        <control type="group">
+                            <visible>!Skin.HasSetting(showBigposterCases) + !Skin.HasSetting(showBigposterClearCases)</visible>
+							<control type="image">
+								<left>118</left>
+								<top>25</top>
+								<width>150</width>
+								<height>230</height>
+								<aspectratio>stretch</aspectratio>
+								<fadetime>IconCrossfadeTime</fadetime>
+								<texture background="true">$INFO[ListItem.Icon]</texture>
+								<bordertexture border="8">ContentPanelvertical.png</bordertexture>
+								<bordersize>8</bordersize>
+							</control>
+                        </control>
+						<control type="group">
+						 <visible>Skin.HasSetting(showBigposterCases) + !Skin.HasSetting(showBigposterClearCases)</visible>
+						<!-- Coverart for Cases -->
+							<control type="image">							
+								<left>126</left>
+								<top>46</top>
+								<width>140</width>
+								<height>205</height>
+								<aspectratio>stretch</aspectratio>
+								<fadetime>IconCrossfadeTime</fadetime>
+								<texture background="true">$INFO[ListItem.Icon]</texture>
+							</control>
+						<!-- Normal Cases -->
+							<control type="image">
+								<left>124</left>
+								<top>25</top>
+								<width>150</width>
+								<height>240</height>
+								<aspectratio aligny="bottom">stretch</aspectratio>
+								<fadetime>IconCrossfadeTime</fadetime>
+								<texture>$VAR[mediaCases]</texture>
+								<visible>!ListItem.IsCollection</visible>
+							</control>
+						<!-- Collection Cases -->
+							<control type="image">
+								<left>124</left>
+								<top>25</top>
+								<width>150</width>
+								<height>240</height>
+								<aspectratio aligny="bottom">stretch</aspectratio>
+								<fadetime>IconCrossfadeTime</fadetime>
+								<texture>special://skin/extras/flagging/cases/collection.png</texture>
+								<visible>Skin.HasSetting(showBigposterCases) + !Skin.HasSetting(showBigposterClearCases)</visible>
+								<visible>ListItem.IsCollection</visible>
+							</control>
+						</control>
+						<control type="group">
+							<visible>Skin.HasSetting(showBigposterClearCases) + Skin.HasSetting(showBigposterCases)</visible>
+						<!-- Coverart for Clear cases -->
+							<control type="image">								
+								<left>129</left>
+								<top>32</top>
+								<width>129</width>
+								<height>218</height>
+								<aspectratio>stretch</aspectratio>
+								<fadetime>IconCrossfadeTime</fadetime>
+								<texture background="true">$INFO[ListItem.Icon]</texture>
+							</control>
+						<!-- Clear cases -->
+							<control type="image">
+								<left>110</left>
+								<top>22</top>
+								<width>157</width>
+								<height>239</height>
+								<aspectratio aligny="bottom">stretch</aspectratio>
+								<fadetime>IconCrossfadeTime</fadetime>
+								<texture>$VAR[mediaCases]</texture>								
+								<visible>!ListItem.IsCollection</visible>
+							</control>
+						<!-- Clear cases for Collection -->
+							<control type="image">
+								<left>110</left>
+								<top>22</top>
+								<width>157</width>
+								<height>239</height>
+								<aspectratio aligny="bottom">stretch</aspectratio>
+								<fadetime>IconCrossfadeTime</fadetime>
+								<texture>special://skin/extras/flagging/cases/collection-clear.png</texture>
+								<visible>ListItem.IsCollection</visible>
+							</control>
+						</control>                     
+                    </control>
+                </focusedlayout>
+            </control>

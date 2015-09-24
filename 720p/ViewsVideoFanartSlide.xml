@@ -8,7 +8,7 @@
 		<control type="group">	
 			<top>300</top>
 			<left>500</left>
-			<visible>!Container(665).OnNext + !Container(665).OnPrevious + Container.Content(movies) + !Control.HasFocus(60) + !Control.HasFocus(2) + !IsEmpty(ListItem.Title)</visible>
+			<visible>!Container(665).OnNext + !Container(665).OnPrevious + Container.Content(movies) + !Control.HasFocus(60) + Control.HasFocus(665) + !Control.HasFocus(2) + !IsEmpty(ListItem.Title)</visible>
 			<animation effect="slide" start="780" end="0" time="1500" delay="2000" reversible="false">Visible</animation>           
 			<visible>Control.IsVisible(665) + !Window.IsVisible(VideoFiles) + Container.Content(Movies) + !Container.Content(TVShows) + !Container.Content(Seasons) + !Container.Content(Episodes)</visible>			
 			<control type="image">
@@ -29,7 +29,8 @@
 				<width>195</width>
 				<height>76</height>
 				<aspectratio>stretch</aspectratio>				
-				<texture background="true">$INFO[ListItem.Art(clearlogo)]</texture>			
+				<texture background="true">$INFO[ListItem.Art(clearlogo)]</texture>	
+				<visible>!Skin.HasSetting(Smallwindowhidden)</visible>
 			</control>
 		</control>
 		
@@ -75,7 +76,6 @@
 				<fadetime>FanartCrossfadeTime</fadetime>
 				<texture fallback="splashm.png" background="true">$INFO[ListItem.Art(fanart)]</texture>
 				<visible>!Player.HasVideo | !Skin.HasSetting(videowindowglobal)</visible>
-				<visible>!Skin.HasSetting(Smallwindowhidden)</visible>
 			</control>
 			<control type="multiimage">
 				<left>-669</left>
@@ -86,8 +86,7 @@
 				<fadetime>FanartCrossfadeTime</fadetime>
 				<timeperimage>3000</timeperimage>
 				<imagepath background="true">$INFO[ListItem.Path]\extrathumbs</imagepath>
-				<visible>!Player.HasVideo | !Skin.HasSetting(videowindowglobal)</visible>
-				<visible>!Skin.HasSetting(Smallwindowhidden)</visible>
+				<visible>!Player.HasVideo | !Skin.HasSetting(videowindowglobal)</visible>				
 				<visible>!Skin.HasSetting(VideoLibraryMovieExtrathumbs)</visible>
 			</control>
             <control type="image">
@@ -345,7 +344,7 @@
                         <animation type="VisibleChange" reversible="false">
 							<effect type="fade" start="100" end="0" delay="0"/>
 						</animation>
-							<animation type="Focus" reversible="false">
+						<animation type="Focus" reversible="false">
                             <effect type="zoom" center="80,190" start="100" end="170" delay="400" time="300" easing="out" tween="cubic" reversible="true"/>
                         </animation>
                         <left>0</left>
